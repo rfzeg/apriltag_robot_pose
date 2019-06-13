@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Launches apriltag detector node properly configured for plywood maze worlds -->
+
+<launch>
+
+  <arg name="x" default="-0.31" />
+  <arg name="y" default="0.27" />
+  <arg name="z" default="0.15" />
+
+  <!-- Double check that these topics are configured correctly -->
+  <arg name="image_topic" default="/udacity_bot/camera1/image_raw" />
+  <arg name="info_topic" default="/udacity_bot/camera1/camera_info" />
+
+  <node pkg="apriltags_ros" type="apriltag_detector_node" name="apriltag_detector" output="screen">
+    <!-- Remap the topic required by the node to the topics that exist in the system -->
+    <remap from="image_rect" to="$(arg image_topic)" />
+    <remap from="camera_info" to="$(arg info_topic)" />
+
+    <!-- Optional: Subscribe to the compressed stream-->
+    <param name="image_transport" type="str" value="compressed" />
+
+    <!-- Select the tag family: 16h5, 25h7, 25h9, 36h9, or 36h11(default) -->
+    <param name="tag_family" type="str" value="36h11" />
+
+    <!-- Enable projected optical measurements for more accurate tag transformations -->
+    <!-- This exists for backwards compatability and should be left true for new setups -->
+    <param name="projected_optics" type="bool" value="true" />
+
+    <!-- Describe the tags, size is expressed in mts. and equal to the length of one of the sides of its black border -->
+    <!-- The detected AprilTags will appear with those tf labels in RVIZ -->
+    <rosparam param="tag_descriptions">[
+    {id: 0, size: 0.16},
+    {id: 1, size: 0.16},
+    {id: 2, size: 0.16},
+    {id: 3, size: 0.16},
+    {id: 4, size: 0.16},
+    {id: 5, size: 0.16},
+    {id: 6, size: 0.16},
+    {id: 7, size: 0.16},
+    {id: 8, size: 0.16},
+    {id: 9, size: 0.16},
+    {id: 10, size: 0.16},
+    {id: 11, size: 0.16},
+    {id: 12, size: 0.16},
+    {id: 13, size: 0.16},
+    {id: 14, size: 0.16},
+    {id: 15, size: 0.16},
+    {id: 16, size: 0.16},
+    {id: 17, size: 0.16},
+    {id: 18, size: 0.16},
+    {id: 19, size: 0.16},
+    {id: 20, size: 0.16},
+    {id: 21, size: 0.16},
+    {id: 22, size: 0.16},
+    {id: 23, size: 0.16},
+    {id: 24, size: 0.16},
+    {id: 25, size: 0.16},
+    {id: 26, size: 0.16},
+    {id: 27, size: 0.16},
+    {id: 28, size: 0.16},
+    {id: 29, size: 0.16},
+    {id: 30, size: 0.16},
+    {id: 31, size: 0.16},
+    {id: 32, size: 0.16},
+    {id: 33, size: 0.16},
+    {id: 34, size: 0.16},
+    {id: 35, size: 0.16},
+    {id: 36, size: 0.16},
+    {id: 37, size: 0.16},
+    {id: 38, size: 0.16},
+    {id: 39, size: 0.16},
+    {id: 40, size: 0.16},
+    {id: 41, size: 0.16},
+    {id: 42, size: 0.16},
+    {id: 43, size: 0.16},
+    {id: 44, size: 0.16},
+    {id: 45, size: 0.16},
+    {id: 46, size: 0.16},
+    {id: 47, size: 0.16},
+    {id: 48, size: 0.16},
+    {id: 49, size: 0.16},
+    {id: 50, size: 0.16},
+    {id: 51, size: 0.16},
+    {id: 52, size: 0.16},
+    {id: 53, size: 0.16},
+    {id: 54, size: 0.16},
+    {id: 55, size: 0.16},
+    {id: 56, size: 0.16},
+    {id: 57, size: 0.16},
+    {id: 58, size: 0.16},
+    {id: 59, size: 0.16},
+    {id: 60, size: 0.16},
+    {id: 61, size: 0.16},
+    {id: 62, size: 0.16},
+    {id: 63, size: 0.16},
+    {id: 64, size: 0.16},
+    {id: 65, size: 0.16},
+    {id: 66, size: 0.16},
+    {id: 67, size: 0.16},
+    {id: 68, size: 0.16},
+    {id: 69, size: 0.16},
+    {id: 70, size: 0.16},
+    {id: 71, size: 0.16},
+    {id: 72, size: 0.16},
+    {id: 73, size: 0.16},
+    {id: 74, size: 0.16},
+    {id: 75, size: 0.16},
+    {id: 76, size: 0.16},
+    {id: 77, size: 0.16},
+    {id: 78, size: 0.16},
+    {id: 79, size: 0.16},
+    {id: 80, size: 0.16},
+    {id: 81, size: 0.16},
+    {id: 82, size: 0.16},
+    {id: 83, size: 0.16},
+    {id: 84, size: 0.16},
+    {id: 85, size: 0.16},
+    {id: 86, size: 0.16},
+    {id: 87, size: 0.16},
+    {id: 88, size: 0.16},
+    {id: 89, size: 0.16},
+    {id: 90, size: 0.16},
+    {id: 91, size: 0.16},
+    {id: 92, size: 0.16},
+    {id: 93, size: 0.16},
+    {id: 94, size: 0.16},
+    {id: 95, size: 0.16},
+    {id: 96, size: 0.16},
+    {id: 97, size: 0.16},
+    {id: 98, size: 0.16},
+    {id: 99, size: 0.16},
+    {id: 100, size: 0.16}]
+    </rosparam>
+  </node>
+</launch>
