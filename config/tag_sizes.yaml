@@ -1,0 +1,2349 @@
+---
+-
+  id: 0
+  frame_id: tag_0
+  size: 0.16
+-
+  id: 1
+  frame_id: tag_1
+  size: 0.16
+- 
+  id: 2
+  frame_id: tag_2
+  size: 0.16
+- 
+  id: 3
+  frame_id: tag_3
+  size: 0.16
+- 
+  id: 4
+  frame_id: tag_4
+  size: 0.16
+- 
+  id: 5
+  frame_id: tag_5
+  size: 0.16
+- 
+  id: 6
+  frame_id: tag_6
+  size: 0.16
+- 
+  id: 7
+  frame_id: tag_7
+  size: 0.16
+- 
+  id: 8
+  frame_id: tag_8
+  size: 0.16
+- 
+  id: 9
+  frame_id: tag_9
+  size: 0.16
+- 
+  id: 10
+  frame_id: tag_10
+  size: 0.16
+- 
+  id: 11
+  frame_id: tag_11
+  size: 0.16
+- 
+  id: 12
+  frame_id: tag_12
+  size: 0.16
+- 
+  id: 13
+  frame_id: tag_13
+  size: 0.16
+- 
+  id: 14
+  frame_id: tag_14
+  size: 0.16
+- 
+  id: 15
+  frame_id: tag_15
+  size: 0.16
+- 
+  id: 16
+  frame_id: tag_16
+  size: 0.16
+- 
+  id: 17
+  frame_id: tag_17
+  size: 0.16
+- 
+  id: 18
+  frame_id: tag_18
+  size: 0.16
+- 
+  id: 19
+  frame_id: tag_19
+  size: 0.16
+- 
+  id: 20
+  frame_id: tag_20
+  size: 0.16
+- 
+  id: 21
+  frame_id: tag_21
+  size: 0.16
+- 
+  id: 22
+  frame_id: tag_22
+  size: 0.16
+- 
+  id: 23
+  frame_id: tag_23
+  size: 0.16
+- 
+  id: 24
+  frame_id: tag_24
+  size: 0.16
+- 
+  id: 25
+  frame_id: tag_25
+  size: 0.16
+- 
+  id: 26
+  frame_id: tag_26
+  size: 0.16
+- 
+  id: 27
+  frame_id: tag_27
+  size: 0.16
+- 
+  id: 28
+  frame_id: tag_28
+  size: 0.16
+- 
+  id: 29
+  frame_id: tag_29
+  size: 0.16
+- 
+  id: 30
+  frame_id: tag_30
+  size: 0.16
+- 
+  id: 31
+  frame_id: tag_31
+  size: 0.16
+- 
+  id: 32
+  frame_id: tag_32
+  size: 0.16
+- 
+  id: 33
+  frame_id: tag_33
+  size: 0.16
+- 
+  id: 34
+  frame_id: tag_34
+  size: 0.16
+- 
+  id: 35
+  frame_id: tag_35
+  size: 0.16
+- 
+  id: 36
+  frame_id: tag_36
+  size: 0.16
+- 
+  id: 37
+  frame_id: tag_37
+  size: 0.16
+- 
+  id: 38
+  frame_id: tag_38
+  size: 0.16
+- 
+  id: 39
+  frame_id: tag_39
+  size: 0.16
+- 
+  id: 40
+  frame_id: tag_40
+  size: 0.16
+- 
+  id: 41
+  frame_id: tag_41
+  size: 0.16
+- 
+  id: 42
+  frame_id: tag_42
+  size: 0.16
+- 
+  id: 43
+  frame_id: tag_43
+  size: 0.16
+- 
+  id: 44
+  frame_id: tag_44
+  size: 0.16
+- 
+  id: 45
+  frame_id: tag_45
+  size: 0.16
+- 
+  id: 46
+  frame_id: tag_46
+  size: 0.16
+- 
+  id: 47
+  frame_id: tag_47
+  size: 0.16
+- 
+  id: 48
+  frame_id: tag_48
+  size: 0.16
+- 
+  id: 49
+  frame_id: tag_49
+  size: 0.16
+- 
+  id: 50
+  frame_id: tag_50
+  size: 0.16
+- 
+  id: 51
+  frame_id: tag_51
+  size: 0.16
+- 
+  id: 52
+  frame_id: tag_52
+  size: 0.16
+- 
+  id: 53
+  frame_id: tag_53
+  size: 0.16
+- 
+  id: 54
+  frame_id: tag_54
+  size: 0.16
+- 
+  id: 55
+  frame_id: tag_55
+  size: 0.16
+- 
+  id: 56
+  frame_id: tag_56
+  size: 0.16
+- 
+  id: 57
+  frame_id: tag_57
+  size: 0.16
+- 
+  id: 58
+  frame_id: tag_58
+  size: 0.16
+- 
+  id: 59
+  frame_id: tag_59
+  size: 0.16
+- 
+  id: 60
+  frame_id: tag_60
+  size: 0.16
+- 
+  id: 61
+  frame_id: tag_61
+  size: 0.16
+- 
+  id: 62
+  frame_id: tag_62
+  size: 0.16
+- 
+  id: 63
+  frame_id: tag_63
+  size: 0.16
+- 
+  id: 64
+  frame_id: tag_64
+  size: 0.16
+- 
+  id: 65
+  frame_id: tag_65
+  size: 0.16
+- 
+  id: 66
+  frame_id: tag_66
+  size: 0.16
+- 
+  id: 67
+  frame_id: tag_67
+  size: 0.16
+- 
+  id: 68
+  frame_id: tag_68
+  size: 0.16
+- 
+  id: 69
+  frame_id: tag_69
+  size: 0.16
+- 
+  id: 70
+  frame_id: tag_70
+  size: 0.16
+- 
+  id: 71
+  frame_id: tag_71
+  size: 0.16
+- 
+  id: 72
+  frame_id: tag_72
+  size: 0.16
+- 
+  id: 73
+  frame_id: tag_73
+  size: 0.16
+- 
+  id: 74
+  frame_id: tag_74
+  size: 0.16
+- 
+  id: 75
+  frame_id: tag_75
+  size: 0.16
+- 
+  id: 76
+  frame_id: tag_76
+  size: 0.16
+- 
+  id: 77
+  frame_id: tag_77
+  size: 0.16
+- 
+  id: 78
+  frame_id: tag_78
+  size: 0.16
+- 
+  id: 79
+  frame_id: tag_79
+  size: 0.16
+- 
+  id: 80
+  frame_id: tag_80
+  size: 0.16
+- 
+  id: 81
+  frame_id: tag_81
+  size: 0.16
+- 
+  id: 82
+  frame_id: tag_82
+  size: 0.16
+- 
+  id: 83
+  frame_id: tag_83
+  size: 0.16
+- 
+  id: 84
+  frame_id: tag_84
+  size: 0.16
+- 
+  id: 85
+  frame_id: tag_85
+  size: 0.16
+- 
+  id: 86
+  frame_id: tag_86
+  size: 0.16
+- 
+  id: 87
+  frame_id: tag_87
+  size: 0.16
+- 
+  id: 88
+  frame_id: tag_88
+  size: 0.16
+- 
+  id: 89
+  frame_id: tag_89
+  size: 0.16
+- 
+  id: 90
+  frame_id: tag_90
+  size: 0.16
+- 
+  id: 91
+  frame_id: tag_91
+  size: 0.16
+- 
+  id: 92
+  frame_id: tag_92
+  size: 0.16
+- 
+  id: 93
+  frame_id: tag_93
+  size: 0.16
+- 
+  id: 94
+  frame_id: tag_94
+  size: 0.16
+- 
+  id: 95
+  frame_id: tag_95
+  size: 0.16
+- 
+  id: 96
+  frame_id: tag_96
+  size: 0.16
+- 
+  id: 97
+  frame_id: tag_97
+  size: 0.16
+- 
+  id: 98
+  frame_id: tag_98
+  size: 0.16
+- 
+  id: 99
+  frame_id: tag_99
+  size: 0.16
+- 
+  id: 100
+  frame_id: tag_100
+  size: 0.16
+- 
+  id: 101
+  frame_id: tag_101
+  size: 0.16
+- 
+  id: 102
+  frame_id: tag_102
+  size: 0.16
+- 
+  id: 103
+  frame_id: tag_103
+  size: 0.16
+- 
+  id: 104
+  frame_id: tag_104
+  size: 0.16
+- 
+  id: 105
+  frame_id: tag_105
+  size: 0.16
+- 
+  id: 106
+  frame_id: tag_106
+  size: 0.16
+- 
+  id: 107
+  frame_id: tag_107
+  size: 0.16
+- 
+  id: 108
+  frame_id: tag_108
+  size: 0.16
+- 
+  id: 109
+  frame_id: tag_109
+  size: 0.16
+- 
+  id: 110
+  frame_id: tag_110
+  size: 0.16
+- 
+  id: 111
+  frame_id: tag_111
+  size: 0.16
+- 
+  id: 112
+  frame_id: tag_112
+  size: 0.16
+- 
+  id: 113
+  frame_id: tag_113
+  size: 0.16
+- 
+  id: 114
+  frame_id: tag_114
+  size: 0.16
+- 
+  id: 115
+  frame_id: tag_115
+  size: 0.16
+- 
+  id: 116
+  frame_id: tag_116
+  size: 0.16
+- 
+  id: 117
+  frame_id: tag_117
+  size: 0.16
+- 
+  id: 118
+  frame_id: tag_118
+  size: 0.16
+- 
+  id: 119
+  frame_id: tag_119
+  size: 0.16
+- 
+  id: 120
+  frame_id: tag_120
+  size: 0.16
+- 
+  id: 121
+  frame_id: tag_121
+  size: 0.16
+- 
+  id: 122
+  frame_id: tag_122
+  size: 0.16
+- 
+  id: 123
+  frame_id: tag_123
+  size: 0.16
+- 
+  id: 124
+  frame_id: tag_124
+  size: 0.16
+- 
+  id: 125
+  frame_id: tag_125
+  size: 0.16
+- 
+  id: 126
+  frame_id: tag_126
+  size: 0.16
+- 
+  id: 127
+  frame_id: tag_127
+  size: 0.16
+- 
+  id: 128
+  frame_id: tag_128
+  size: 0.16
+- 
+  id: 129
+  frame_id: tag_129
+  size: 0.16
+- 
+  id: 130
+  frame_id: tag_130
+  size: 0.16
+- 
+  id: 131
+  frame_id: tag_131
+  size: 0.16
+- 
+  id: 132
+  frame_id: tag_132
+  size: 0.16
+- 
+  id: 133
+  frame_id: tag_133
+  size: 0.16
+- 
+  id: 134
+  frame_id: tag_134
+  size: 0.16
+- 
+  id: 135
+  frame_id: tag_135
+  size: 0.16
+- 
+  id: 136
+  frame_id: tag_136
+  size: 0.16
+- 
+  id: 137
+  frame_id: tag_137
+  size: 0.16
+- 
+  id: 138
+  frame_id: tag_138
+  size: 0.16
+- 
+  id: 139
+  frame_id: tag_139
+  size: 0.16
+- 
+  id: 140
+  frame_id: tag_140
+  size: 0.16
+- 
+  id: 141
+  frame_id: tag_141
+  size: 0.16
+- 
+  id: 142
+  frame_id: tag_142
+  size: 0.16
+- 
+  id: 143
+  frame_id: tag_143
+  size: 0.16
+- 
+  id: 144
+  frame_id: tag_144
+  size: 0.16
+- 
+  id: 145
+  frame_id: tag_145
+  size: 0.16
+- 
+  id: 146
+  frame_id: tag_146
+  size: 0.16
+- 
+  id: 147
+  frame_id: tag_147
+  size: 0.16
+- 
+  id: 148
+  frame_id: tag_148
+  size: 0.16
+- 
+  id: 149
+  frame_id: tag_149
+  size: 0.16
+- 
+  id: 150
+  frame_id: tag_150
+  size: 0.16
+- 
+  id: 151
+  frame_id: tag_151
+  size: 0.16
+- 
+  id: 152
+  frame_id: tag_152
+  size: 0.16
+- 
+  id: 153
+  frame_id: tag_153
+  size: 0.16
+- 
+  id: 154
+  frame_id: tag_154
+  size: 0.16
+- 
+  id: 155
+  frame_id: tag_155
+  size: 0.16
+- 
+  id: 156
+  frame_id: tag_156
+  size: 0.16
+- 
+  id: 157
+  frame_id: tag_157
+  size: 0.16
+- 
+  id: 158
+  frame_id: tag_158
+  size: 0.16
+- 
+  id: 159
+  frame_id: tag_159
+  size: 0.16
+- 
+  id: 160
+  frame_id: tag_160
+  size: 0.16
+- 
+  id: 161
+  frame_id: tag_161
+  size: 0.16
+- 
+  id: 162
+  frame_id: tag_162
+  size: 0.16
+- 
+  id: 163
+  frame_id: tag_163
+  size: 0.16
+- 
+  id: 164
+  frame_id: tag_164
+  size: 0.16
+- 
+  id: 165
+  frame_id: tag_165
+  size: 0.16
+- 
+  id: 166
+  frame_id: tag_166
+  size: 0.16
+- 
+  id: 167
+  frame_id: tag_167
+  size: 0.16
+- 
+  id: 168
+  frame_id: tag_168
+  size: 0.16
+- 
+  id: 169
+  frame_id: tag_169
+  size: 0.16
+- 
+  id: 170
+  frame_id: tag_170
+  size: 0.16
+- 
+  id: 171
+  frame_id: tag_171
+  size: 0.16
+- 
+  id: 172
+  frame_id: tag_172
+  size: 0.16
+- 
+  id: 173
+  frame_id: tag_173
+  size: 0.16
+- 
+  id: 174
+  frame_id: tag_174
+  size: 0.16
+- 
+  id: 175
+  frame_id: tag_175
+  size: 0.16
+- 
+  id: 176
+  frame_id: tag_176
+  size: 0.16
+- 
+  id: 177
+  frame_id: tag_177
+  size: 0.16
+- 
+  id: 178
+  frame_id: tag_178
+  size: 0.16
+- 
+  id: 179
+  frame_id: tag_179
+  size: 0.16
+- 
+  id: 180
+  frame_id: tag_180
+  size: 0.16
+- 
+  id: 181
+  frame_id: tag_181
+  size: 0.16
+- 
+  id: 182
+  frame_id: tag_182
+  size: 0.16
+- 
+  id: 183
+  frame_id: tag_183
+  size: 0.16
+- 
+  id: 184
+  frame_id: tag_184
+  size: 0.16
+- 
+  id: 185
+  frame_id: tag_185
+  size: 0.16
+- 
+  id: 186
+  frame_id: tag_186
+  size: 0.16
+- 
+  id: 187
+  frame_id: tag_187
+  size: 0.16
+- 
+  id: 188
+  frame_id: tag_188
+  size: 0.16
+- 
+  id: 189
+  frame_id: tag_189
+  size: 0.16
+- 
+  id: 190
+  frame_id: tag_190
+  size: 0.16
+- 
+  id: 191
+  frame_id: tag_191
+  size: 0.16
+- 
+  id: 192
+  frame_id: tag_192
+  size: 0.16
+- 
+  id: 193
+  frame_id: tag_193
+  size: 0.16
+- 
+  id: 194
+  frame_id: tag_194
+  size: 0.16
+- 
+  id: 195
+  frame_id: tag_195
+  size: 0.16
+- 
+  id: 196
+  frame_id: tag_196
+  size: 0.16
+- 
+  id: 197
+  frame_id: tag_197
+  size: 0.16
+- 
+  id: 198
+  frame_id: tag_198
+  size: 0.16
+- 
+  id: 199
+  frame_id: tag_199
+  size: 0.16
+- 
+  id: 200
+  frame_id: tag_200
+  size: 0.16
+-
+  id: 201
+  frame_id: tag_201
+  size: 0.16
+- 
+  id: 202
+  frame_id: tag_202
+  size: 0.16
+- 
+  id: 203
+  frame_id: tag_203
+  size: 0.16
+- 
+  id: 204
+  frame_id: tag_204
+  size: 0.16
+- 
+  id: 205
+  frame_id: tag_205
+  size: 0.16
+- 
+  id: 206
+  frame_id: tag_206
+  size: 0.16
+- 
+  id: 207
+  frame_id: tag_207
+  size: 0.16
+- 
+  id: 208
+  frame_id: tag_208
+  size: 0.16
+- 
+  id: 209
+  frame_id: tag_209
+  size: 0.16
+- 
+  id: 210
+  frame_id: tag_210
+  size: 0.16
+- 
+  id: 211
+  frame_id: tag_211
+  size: 0.16
+- 
+  id: 212
+  frame_id: tag_212
+  size: 0.16
+- 
+  id: 213
+  frame_id: tag_213
+  size: 0.16
+- 
+  id: 214
+  frame_id: tag_214
+  size: 0.16
+- 
+  id: 215
+  frame_id: tag_215
+  size: 0.16
+- 
+  id: 216
+  frame_id: tag_216
+  size: 0.16
+- 
+  id: 217
+  frame_id: tag_217
+  size: 0.16
+- 
+  id: 218
+  frame_id: tag_218
+  size: 0.16
+- 
+  id: 219
+  frame_id: tag_219
+  size: 0.16
+- 
+  id: 220
+  frame_id: tag_220
+  size: 0.16
+- 
+  id: 221
+  frame_id: tag_221
+  size: 0.16
+- 
+  id: 222
+  frame_id: tag_222
+  size: 0.16
+- 
+  id: 223
+  frame_id: tag_223
+  size: 0.16
+- 
+  id: 224
+  frame_id: tag_224
+  size: 0.16
+- 
+  id: 225
+  frame_id: tag_225
+  size: 0.16
+- 
+  id: 226
+  frame_id: tag_226
+  size: 0.16
+- 
+  id: 227
+  frame_id: tag_227
+  size: 0.16
+- 
+  id: 228
+  frame_id: tag_228
+  size: 0.16
+- 
+  id: 229
+  frame_id: tag_229
+  size: 0.16
+- 
+  id: 230
+  frame_id: tag_230
+  size: 0.16
+- 
+  id: 231
+  frame_id: tag_231
+  size: 0.16
+- 
+  id: 232
+  frame_id: tag_232
+  size: 0.16
+- 
+  id: 233
+  frame_id: tag_233
+  size: 0.16
+- 
+  id: 234
+  frame_id: tag_234
+  size: 0.16
+- 
+  id: 235
+  frame_id: tag_235
+  size: 0.16
+- 
+  id: 236
+  frame_id: tag_236
+  size: 0.16
+- 
+  id: 237
+  frame_id: tag_237
+  size: 0.16
+- 
+  id: 238
+  frame_id: tag_238
+  size: 0.16
+- 
+  id: 239
+  frame_id: tag_239
+  size: 0.16
+- 
+  id: 240
+  frame_id: tag_240
+  size: 0.16
+- 
+  id: 241
+  frame_id: tag_241
+  size: 0.16
+- 
+  id: 242
+  frame_id: tag_242
+  size: 0.16
+- 
+  id: 243
+  frame_id: tag_243
+  size: 0.16
+- 
+  id: 244
+  frame_id: tag_244
+  size: 0.16
+- 
+  id: 245
+  frame_id: tag_245
+  size: 0.16
+- 
+  id: 246
+  frame_id: tag_246
+  size: 0.16
+- 
+  id: 247
+  frame_id: tag_247
+  size: 0.16
+- 
+  id: 248
+  frame_id: tag_248
+  size: 0.16
+- 
+  id: 249
+  frame_id: tag_249
+  size: 0.16
+- 
+  id: 250
+  frame_id: tag_250
+  size: 0.16
+- 
+  id: 251
+  frame_id: tag_251
+  size: 0.16
+- 
+  id: 252
+  frame_id: tag_252
+  size: 0.16
+- 
+  id: 253
+  frame_id: tag_253
+  size: 0.16
+- 
+  id: 254
+  frame_id: tag_254
+  size: 0.16
+- 
+  id: 255
+  frame_id: tag_255
+  size: 0.16
+- 
+  id: 256
+  frame_id: tag_256
+  size: 0.16
+- 
+  id: 257
+  frame_id: tag_257
+  size: 0.16
+- 
+  id: 258
+  frame_id: tag_258
+  size: 0.16
+- 
+  id: 259
+  frame_id: tag_259
+  size: 0.16
+- 
+  id: 260
+  frame_id: tag_260
+  size: 0.16
+- 
+  id: 261
+  frame_id: tag_261
+  size: 0.16
+- 
+  id: 262
+  frame_id: tag_262
+  size: 0.16
+- 
+  id: 263
+  frame_id: tag_263
+  size: 0.16
+- 
+  id: 264
+  frame_id: tag_264
+  size: 0.16
+- 
+  id: 265
+  frame_id: tag_265
+  size: 0.16
+- 
+  id: 266
+  frame_id: tag_266
+  size: 0.16
+- 
+  id: 267
+  frame_id: tag_267
+  size: 0.16
+- 
+  id: 268
+  frame_id: tag_268
+  size: 0.16
+- 
+  id: 269
+  frame_id: tag_269
+  size: 0.16
+- 
+  id: 270
+  frame_id: tag_270
+  size: 0.16
+- 
+  id: 271
+  frame_id: tag_271
+  size: 0.16
+- 
+  id: 272
+  frame_id: tag_272
+  size: 0.16
+- 
+  id: 273
+  frame_id: tag_273
+  size: 0.16
+- 
+  id: 274
+  frame_id: tag_274
+  size: 0.16
+- 
+  id: 275
+  frame_id: tag_275
+  size: 0.16
+- 
+  id: 276
+  frame_id: tag_276
+  size: 0.16
+- 
+  id: 277
+  frame_id: tag_277
+  size: 0.16
+- 
+  id: 278
+  frame_id: tag_278
+  size: 0.16
+- 
+  id: 279
+  frame_id: tag_279
+  size: 0.16
+- 
+  id: 280
+  frame_id: tag_280
+  size: 0.16
+- 
+  id: 281
+  frame_id: tag_281
+  size: 0.16
+- 
+  id: 282
+  frame_id: tag_282
+  size: 0.16
+- 
+  id: 283
+  frame_id: tag_283
+  size: 0.16
+- 
+  id: 284
+  frame_id: tag_284
+  size: 0.16
+- 
+  id: 285
+  frame_id: tag_285
+  size: 0.16
+- 
+  id: 286
+  frame_id: tag_286
+  size: 0.16
+- 
+  id: 287
+  frame_id: tag_287
+  size: 0.16
+- 
+  id: 288
+  frame_id: tag_288
+  size: 0.16
+- 
+  id: 289
+  frame_id: tag_289
+  size: 0.16
+- 
+  id: 290
+  frame_id: tag_290
+  size: 0.16
+- 
+  id: 291
+  frame_id: tag_291
+  size: 0.16
+- 
+  id: 292
+  frame_id: tag_292
+  size: 0.16
+- 
+  id: 293
+  frame_id: tag_293
+  size: 0.16
+- 
+  id: 294
+  frame_id: tag_294
+  size: 0.16
+- 
+  id: 295
+  frame_id: tag_295
+  size: 0.16
+- 
+  id: 296
+  frame_id: tag_296
+  size: 0.16
+- 
+  id: 297
+  frame_id: tag_297
+  size: 0.16
+- 
+  id: 298
+  frame_id: tag_298
+  size: 0.16
+- 
+  id: 299
+  frame_id: tag_299
+  size: 0.16
+- 
+  id: 300
+  frame_id: tag_300
+  size: 0.16
+- 
+  id: 301
+  frame_id: tag_301
+  size: 0.16
+- 
+  id: 302
+  frame_id: tag_302
+  size: 0.16
+- 
+  id: 303
+  frame_id: tag_303
+  size: 0.16
+- 
+  id: 304
+  frame_id: tag_304
+  size: 0.16
+- 
+  id: 305
+  frame_id: tag_305
+  size: 0.16
+- 
+  id: 306
+  frame_id: tag_306
+  size: 0.16
+- 
+  id: 307
+  frame_id: tag_307
+  size: 0.16
+- 
+  id: 308
+  frame_id: tag_308
+  size: 0.16
+- 
+  id: 309
+  frame_id: tag_309
+  size: 0.16
+- 
+  id: 310
+  frame_id: tag_310
+  size: 0.16
+- 
+  id: 311
+  frame_id: tag_311
+  size: 0.16
+- 
+  id: 312
+  frame_id: tag_312
+  size: 0.16
+- 
+  id: 313
+  frame_id: tag_313
+  size: 0.16
+- 
+  id: 314
+  frame_id: tag_314
+  size: 0.16
+- 
+  id: 315
+  frame_id: tag_315
+  size: 0.16
+- 
+  id: 316
+  frame_id: tag_316
+  size: 0.16
+- 
+  id: 317
+  frame_id: tag_317
+  size: 0.16
+- 
+  id: 318
+  frame_id: tag_318
+  size: 0.16
+- 
+  id: 319
+  frame_id: tag_319
+  size: 0.16
+- 
+  id: 320
+  frame_id: tag_320
+  size: 0.16
+- 
+  id: 321
+  frame_id: tag_321
+  size: 0.16
+- 
+  id: 322
+  frame_id: tag_322
+  size: 0.16
+- 
+  id: 323
+  frame_id: tag_323
+  size: 0.16
+- 
+  id: 324
+  frame_id: tag_324
+  size: 0.16
+- 
+  id: 325
+  frame_id: tag_325
+  size: 0.16
+- 
+  id: 326
+  frame_id: tag_326
+  size: 0.16
+- 
+  id: 327
+  frame_id: tag_327
+  size: 0.16
+- 
+  id: 328
+  frame_id: tag_328
+  size: 0.16
+- 
+  id: 329
+  frame_id: tag_329
+  size: 0.16
+- 
+  id: 330
+  frame_id: tag_330
+  size: 0.16
+- 
+  id: 331
+  frame_id: tag_331
+  size: 0.16
+- 
+  id: 332
+  frame_id: tag_332
+  size: 0.16
+- 
+  id: 333
+  frame_id: tag_333
+  size: 0.16
+- 
+  id: 334
+  frame_id: tag_334
+  size: 0.16
+- 
+  id: 335
+  frame_id: tag_335
+  size: 0.16
+- 
+  id: 336
+  frame_id: tag_336
+  size: 0.16
+- 
+  id: 337
+  frame_id: tag_337
+  size: 0.16
+- 
+  id: 338
+  frame_id: tag_338
+  size: 0.16
+- 
+  id: 339
+  frame_id: tag_339
+  size: 0.16
+- 
+  id: 340
+  frame_id: tag_340
+  size: 0.16
+- 
+  id: 341
+  frame_id: tag_341
+  size: 0.16
+- 
+  id: 342
+  frame_id: tag_342
+  size: 0.16
+- 
+  id: 343
+  frame_id: tag_343
+  size: 0.16
+- 
+  id: 344
+  frame_id: tag_344
+  size: 0.16
+- 
+  id: 345
+  frame_id: tag_345
+  size: 0.16
+- 
+  id: 346
+  frame_id: tag_346
+  size: 0.16
+- 
+  id: 347
+  frame_id: tag_347
+  size: 0.16
+- 
+  id: 348
+  frame_id: tag_348
+  size: 0.16
+- 
+  id: 349
+  frame_id: tag_349
+  size: 0.16
+- 
+  id: 350
+  frame_id: tag_350
+  size: 0.16
+- 
+  id: 351
+  frame_id: tag_351
+  size: 0.16
+- 
+  id: 352
+  frame_id: tag_352
+  size: 0.16
+- 
+  id: 353
+  frame_id: tag_353
+  size: 0.16
+- 
+  id: 354
+  frame_id: tag_354
+  size: 0.16
+- 
+  id: 355
+  frame_id: tag_355
+  size: 0.16
+- 
+  id: 356
+  frame_id: tag_356
+  size: 0.16
+- 
+  id: 357
+  frame_id: tag_357
+  size: 0.16
+- 
+  id: 358
+  frame_id: tag_358
+  size: 0.16
+- 
+  id: 359
+  frame_id: tag_359
+  size: 0.16
+- 
+  id: 360
+  frame_id: tag_360
+  size: 0.16
+- 
+  id: 361
+  frame_id: tag_361
+  size: 0.16
+- 
+  id: 362
+  frame_id: tag_362
+  size: 0.16
+- 
+  id: 363
+  frame_id: tag_363
+  size: 0.16
+- 
+  id: 364
+  frame_id: tag_364
+  size: 0.16
+- 
+  id: 365
+  frame_id: tag_365
+  size: 0.16
+- 
+  id: 366
+  frame_id: tag_366
+  size: 0.16
+- 
+  id: 367
+  frame_id: tag_367
+  size: 0.16
+- 
+  id: 368
+  frame_id: tag_368
+  size: 0.16
+- 
+  id: 369
+  frame_id: tag_369
+  size: 0.16
+- 
+  id: 370
+  frame_id: tag_370
+  size: 0.16
+- 
+  id: 371
+  frame_id: tag_371
+  size: 0.16
+- 
+  id: 372
+  frame_id: tag_372
+  size: 0.16
+- 
+  id: 373
+  frame_id: tag_373
+  size: 0.16
+- 
+  id: 374
+  frame_id: tag_374
+  size: 0.16
+- 
+  id: 375
+  frame_id: tag_375
+  size: 0.16
+- 
+  id: 376
+  frame_id: tag_376
+  size: 0.16
+- 
+  id: 377
+  frame_id: tag_377
+  size: 0.16
+- 
+  id: 378
+  frame_id: tag_378
+  size: 0.16
+- 
+  id: 379
+  frame_id: tag_379
+  size: 0.16
+- 
+  id: 380
+  frame_id: tag_380
+  size: 0.16
+- 
+  id: 381
+  frame_id: tag_381
+  size: 0.16
+- 
+  id: 382
+  frame_id: tag_382
+  size: 0.16
+- 
+  id: 383
+  frame_id: tag_383
+  size: 0.16
+- 
+  id: 384
+  frame_id: tag_384
+  size: 0.16
+- 
+  id: 385
+  frame_id: tag_385
+  size: 0.16
+- 
+  id: 386
+  frame_id: tag_386
+  size: 0.16
+- 
+  id: 387
+  frame_id: tag_387
+  size: 0.16
+- 
+  id: 388
+  frame_id: tag_388
+  size: 0.16
+- 
+  id: 389
+  frame_id: tag_389
+  size: 0.16
+- 
+  id: 390
+  frame_id: tag_390
+  size: 0.16
+- 
+  id: 391
+  frame_id: tag_391
+  size: 0.16
+- 
+  id: 392
+  frame_id: tag_392
+  size: 0.16
+- 
+  id: 393
+  frame_id: tag_393
+  size: 0.16
+- 
+  id: 394
+  frame_id: tag_394
+  size: 0.16
+- 
+  id: 395
+  frame_id: tag_395
+  size: 0.16
+- 
+  id: 396
+  frame_id: tag_396
+  size: 0.16
+- 
+  id: 397
+  frame_id: tag_397
+  size: 0.16
+- 
+  id: 398
+  frame_id: tag_398
+  size: 0.16
+- 
+  id: 399
+  frame_id: tag_399
+  size: 0.16
+- 
+  id: 400
+  frame_id: tag_400
+  size: 0.16
+- 
+  id: 401
+  frame_id: tag_401
+  size: 0.16
+- 
+  id: 402
+  frame_id: tag_402
+  size: 0.16
+- 
+  id: 403
+  frame_id: tag_403
+  size: 0.16
+- 
+  id: 404
+  frame_id: tag_404
+  size: 0.16
+- 
+  id: 405
+  frame_id: tag_405
+  size: 0.16
+- 
+  id: 406
+  frame_id: tag_406
+  size: 0.16
+- 
+  id: 407
+  frame_id: tag_407
+  size: 0.16
+- 
+  id: 408
+  frame_id: tag_408
+  size: 0.16
+- 
+  id: 409
+  frame_id: tag_409
+  size: 0.16
+- 
+  id: 410
+  frame_id: tag_410
+  size: 0.16
+- 
+  id: 411
+  frame_id: tag_411
+  size: 0.16
+- 
+  id: 412
+  frame_id: tag_412
+  size: 0.16
+- 
+  id: 413
+  frame_id: tag_413
+  size: 0.16
+- 
+  id: 414
+  frame_id: tag_414
+  size: 0.16
+- 
+  id: 415
+  frame_id: tag_415
+  size: 0.16
+- 
+  id: 416
+  frame_id: tag_416
+  size: 0.16
+- 
+  id: 417
+  frame_id: tag_417
+  size: 0.16
+- 
+  id: 418
+  frame_id: tag_418
+  size: 0.16
+- 
+  id: 419
+  frame_id: tag_419
+  size: 0.16
+- 
+  id: 420
+  frame_id: tag_420
+  size: 0.16
+- 
+  id: 421
+  frame_id: tag_421
+  size: 0.16
+- 
+  id: 422
+  frame_id: tag_422
+  size: 0.16
+- 
+  id: 423
+  frame_id: tag_423
+  size: 0.16
+- 
+  id: 424
+  frame_id: tag_424
+  size: 0.16
+- 
+  id: 425
+  frame_id: tag_425
+  size: 0.16
+- 
+  id: 426
+  frame_id: tag_426
+  size: 0.16
+- 
+  id: 427
+  frame_id: tag_427
+  size: 0.16
+- 
+  id: 428
+  frame_id: tag_428
+  size: 0.16
+- 
+  id: 429
+  frame_id: tag_429
+  size: 0.16
+- 
+  id: 430
+  frame_id: tag_430
+  size: 0.16
+- 
+  id: 431
+  frame_id: tag_431
+  size: 0.16
+- 
+  id: 432
+  frame_id: tag_432
+  size: 0.16
+- 
+  id: 433
+  frame_id: tag_433
+  size: 0.16
+- 
+  id: 434
+  frame_id: tag_434
+  size: 0.16
+- 
+  id: 435
+  frame_id: tag_435
+  size: 0.16
+- 
+  id: 436
+  frame_id: tag_436
+  size: 0.16
+- 
+  id: 437
+  frame_id: tag_437
+  size: 0.16
+- 
+  id: 438
+  frame_id: tag_438
+  size: 0.16
+- 
+  id: 439
+  frame_id: tag_439
+  size: 0.16
+- 
+  id: 440
+  frame_id: tag_440
+  size: 0.16
+- 
+  id: 441
+  frame_id: tag_441
+  size: 0.16
+- 
+  id: 442
+  frame_id: tag_442
+  size: 0.16
+- 
+  id: 443
+  frame_id: tag_443
+  size: 0.16
+- 
+  id: 444
+  frame_id: tag_444
+  size: 0.16
+- 
+  id: 445
+  frame_id: tag_445
+  size: 0.16
+- 
+  id: 446
+  frame_id: tag_446
+  size: 0.16
+- 
+  id: 447
+  frame_id: tag_447
+  size: 0.16
+- 
+  id: 448
+  frame_id: tag_448
+  size: 0.16
+- 
+  id: 449
+  frame_id: tag_449
+  size: 0.16
+- 
+  id: 450
+  frame_id: tag_450
+  size: 0.16
+- 
+  id: 451
+  frame_id: tag_451
+  size: 0.16
+- 
+  id: 452
+  frame_id: tag_452
+  size: 0.16
+- 
+  id: 453
+  frame_id: tag_453
+  size: 0.16
+- 
+  id: 454
+  frame_id: tag_454
+  size: 0.16
+- 
+  id: 455
+  frame_id: tag_455
+  size: 0.16
+- 
+  id: 456
+  frame_id: tag_456
+  size: 0.16
+- 
+  id: 457
+  frame_id: tag_457
+  size: 0.16
+- 
+  id: 458
+  frame_id: tag_458
+  size: 0.16
+- 
+  id: 459
+  frame_id: tag_459
+  size: 0.16
+- 
+  id: 460
+  frame_id: tag_460
+  size: 0.16
+- 
+  id: 461
+  frame_id: tag_461
+  size: 0.16
+- 
+  id: 462
+  frame_id: tag_462
+  size: 0.16
+- 
+  id: 463
+  frame_id: tag_463
+  size: 0.16
+- 
+  id: 464
+  frame_id: tag_464
+  size: 0.16
+- 
+  id: 465
+  frame_id: tag_465
+  size: 0.16
+- 
+  id: 466
+  frame_id: tag_466
+  size: 0.16
+- 
+  id: 467
+  frame_id: tag_467
+  size: 0.16
+- 
+  id: 468
+  frame_id: tag_468
+  size: 0.16
+- 
+  id: 469
+  frame_id: tag_469
+  size: 0.16
+- 
+  id: 470
+  frame_id: tag_470
+  size: 0.16
+- 
+  id: 471
+  frame_id: tag_471
+  size: 0.16
+- 
+  id: 472
+  frame_id: tag_472
+  size: 0.16
+- 
+  id: 473
+  frame_id: tag_473
+  size: 0.16
+- 
+  id: 474
+  frame_id: tag_474
+  size: 0.16
+- 
+  id: 475
+  frame_id: tag_475
+  size: 0.16
+- 
+  id: 476
+  frame_id: tag_476
+  size: 0.16
+- 
+  id: 477
+  frame_id: tag_477
+  size: 0.16
+- 
+  id: 478
+  frame_id: tag_478
+  size: 0.16
+- 
+  id: 479
+  frame_id: tag_479
+  size: 0.16
+- 
+  id: 480
+  frame_id: tag_480
+  size: 0.16
+- 
+  id: 481
+  frame_id: tag_481
+  size: 0.16
+- 
+  id: 482
+  frame_id: tag_482
+  size: 0.16
+- 
+  id: 483
+  frame_id: tag_483
+  size: 0.16
+- 
+  id: 484
+  frame_id: tag_484
+  size: 0.16
+- 
+  id: 485
+  frame_id: tag_485
+  size: 0.16
+- 
+  id: 486
+  frame_id: tag_486
+  size: 0.16
+- 
+  id: 487
+  frame_id: tag_487
+  size: 0.16
+- 
+  id: 488
+  frame_id: tag_488
+  size: 0.16
+- 
+  id: 489
+  frame_id: tag_489
+  size: 0.16
+- 
+  id: 490
+  frame_id: tag_490
+  size: 0.16
+- 
+  id: 491
+  frame_id: tag_491
+  size: 0.16
+- 
+  id: 492
+  frame_id: tag_492
+  size: 0.16
+- 
+  id: 493
+  frame_id: tag_493
+  size: 0.16
+- 
+  id: 494
+  frame_id: tag_494
+  size: 0.16
+- 
+  id: 495
+  frame_id: tag_495
+  size: 0.16
+- 
+  id: 496
+  frame_id: tag_496
+  size: 0.16
+- 
+  id: 497
+  frame_id: tag_497
+  size: 0.16
+- 
+  id: 498
+  frame_id: tag_498
+  size: 0.16
+- 
+  id: 499
+  frame_id: tag_499
+  size: 0.16
+- 
+  id: 500
+  frame_id: tag_500
+  size: 0.16
+- 
+  id: 501
+  frame_id: tag_501
+  size: 0.16
+- 
+  id: 502
+  frame_id: tag_502
+  size: 0.16
+- 
+  id: 503
+  frame_id: tag_503
+  size: 0.16
+- 
+  id: 504
+  frame_id: tag_504
+  size: 0.16
+- 
+  id: 505
+  frame_id: tag_505
+  size: 0.16
+- 
+  id: 506
+  frame_id: tag_506
+  size: 0.16
+- 
+  id: 507
+  frame_id: tag_507
+  size: 0.16
+- 
+  id: 508
+  frame_id: tag_508
+  size: 0.16
+- 
+  id: 509
+  frame_id: tag_509
+  size: 0.16
+- 
+  id: 510
+  frame_id: tag_510
+  size: 0.16
+- 
+  id: 511
+  frame_id: tag_511
+  size: 0.16
+- 
+  id: 512
+  frame_id: tag_512
+  size: 0.16
+- 
+  id: 513
+  frame_id: tag_513
+  size: 0.16
+- 
+  id: 514
+  frame_id: tag_514
+  size: 0.16
+- 
+  id: 515
+  frame_id: tag_515
+  size: 0.16
+- 
+  id: 516
+  frame_id: tag_516
+  size: 0.16
+- 
+  id: 517
+  frame_id: tag_517
+  size: 0.16
+- 
+  id: 518
+  frame_id: tag_518
+  size: 0.16
+- 
+  id: 519
+  frame_id: tag_519
+  size: 0.16
+- 
+  id: 520
+  frame_id: tag_520
+  size: 0.16
+- 
+  id: 521
+  frame_id: tag_521
+  size: 0.16
+- 
+  id: 522
+  frame_id: tag_522
+  size: 0.16
+- 
+  id: 523
+  frame_id: tag_523
+  size: 0.16
+- 
+  id: 524
+  frame_id: tag_524
+  size: 0.16
+- 
+  id: 525
+  frame_id: tag_525
+  size: 0.16
+- 
+  id: 526
+  frame_id: tag_526
+  size: 0.16
+- 
+  id: 527
+  frame_id: tag_527
+  size: 0.16
+- 
+  id: 528
+  frame_id: tag_528
+  size: 0.16
+- 
+  id: 529
+  frame_id: tag_529
+  size: 0.16
+- 
+  id: 530
+  frame_id: tag_530
+  size: 0.16
+- 
+  id: 531
+  frame_id: tag_531
+  size: 0.16
+- 
+  id: 532
+  frame_id: tag_532
+  size: 0.16
+- 
+  id: 533
+  frame_id: tag_533
+  size: 0.16
+- 
+  id: 534
+  frame_id: tag_534
+  size: 0.16
+- 
+  id: 535
+  frame_id: tag_535
+  size: 0.16
+- 
+  id: 536
+  frame_id: tag_536
+  size: 0.16
+- 
+  id: 537
+  frame_id: tag_537
+  size: 0.16
+- 
+  id: 538
+  frame_id: tag_538
+  size: 0.16
+- 
+  id: 539
+  frame_id: tag_539
+  size: 0.16
+- 
+  id: 540
+  frame_id: tag_540
+  size: 0.16
+- 
+  id: 541
+  frame_id: tag_541
+  size: 0.16
+- 
+  id: 542
+  frame_id: tag_542
+  size: 0.16
+- 
+  id: 543
+  frame_id: tag_543
+  size: 0.16
+- 
+  id: 544
+  frame_id: tag_544
+  size: 0.16
+- 
+  id: 545
+  frame_id: tag_545
+  size: 0.16
+- 
+  id: 546
+  frame_id: tag_546
+  size: 0.16
+- 
+  id: 547
+  frame_id: tag_547
+  size: 0.16
+- 
+  id: 548
+  frame_id: tag_548
+  size: 0.16
+- 
+  id: 549
+  frame_id: tag_549
+  size: 0.16
+- 
+  id: 550
+  frame_id: tag_550
+  size: 0.16
+- 
+  id: 551
+  frame_id: tag_551
+  size: 0.16
+- 
+  id: 552
+  frame_id: tag_552
+  size: 0.16
+- 
+  id: 553
+  frame_id: tag_553
+  size: 0.16
+- 
+  id: 554
+  frame_id: tag_554
+  size: 0.16
+- 
+  id: 555
+  frame_id: tag_555
+  size: 0.16
+- 
+  id: 556
+  frame_id: tag_556
+  size: 0.16
+- 
+  id: 557
+  frame_id: tag_557
+  size: 0.16
+- 
+  id: 558
+  frame_id: tag_558
+  size: 0.16
+- 
+  id: 559
+  frame_id: tag_559
+  size: 0.16
+- 
+  id: 560
+  frame_id: tag_560
+  size: 0.16
+- 
+  id: 561
+  frame_id: tag_561
+  size: 0.16
+- 
+  id: 562
+  frame_id: tag_562
+  size: 0.16
+- 
+  id: 563
+  frame_id: tag_563
+  size: 0.16
+- 
+  id: 564
+  frame_id: tag_564
+  size: 0.16
+- 
+  id: 565
+  frame_id: tag_565
+  size: 0.16
+- 
+  id: 566
+  frame_id: tag_566
+  size: 0.16
+- 
+  id: 567
+  frame_id: tag_567
+  size: 0.16
+- 
+  id: 568
+  frame_id: tag_568
+  size: 0.16
+- 
+  id: 569
+  frame_id: tag_569
+  size: 0.16
+- 
+  id: 570
+  frame_id: tag_570
+  size: 0.16
+- 
+  id: 571
+  frame_id: tag_571
+  size: 0.16
+- 
+  id: 572
+  frame_id: tag_572
+  size: 0.16
+- 
+  id: 573
+  frame_id: tag_573
+  size: 0.16
+- 
+  id: 574
+  frame_id: tag_574
+  size: 0.16
+- 
+  id: 575
+  frame_id: tag_575
+  size: 0.16
+- 
+  id: 576
+  frame_id: tag_576
+  size: 0.16
+- 
+  id: 577
+  frame_id: tag_577
+  size: 0.16
+- 
+  id: 578
+  frame_id: tag_578
+  size: 0.16
+- 
+  id: 579
+  frame_id: tag_579
+  size: 0.16
+- 
+  id: 580
+  frame_id: tag_580
+  size: 0.16
+- 
+  id: 581
+  frame_id: tag_581
+  size: 0.16
+- 
+  id: 582
+  frame_id: tag_582
+  size: 0.16
+- 
+  id: 583
+  frame_id: tag_583
+  size: 0.16
+- 
+  id: 584
+  frame_id: tag_584
+  size: 0.16
+- 
+  id: 585
+  frame_id: tag_585
+  size: 0.16
+- 
+  id: 586
+  frame_id: tag_586
+  size: 0.16
