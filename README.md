@@ -1,7 +1,9 @@
+<img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/ros_logo.png" align="right" width="101" height="27" />
+
 # AprilTag Robot Pose
 Author: Roberto Zegers R.
 
-This ROS package implements a robot localization system using AprilTag markers.
+This ROS package implements a robot localization system using AprilTag markers. The tags used correspond to the family tag36h11, which has 587 different tags.
 
 ## Dependencies
 Packages on which this package depends:
@@ -15,7 +17,7 @@ First install AprilTag and its ROS wrapper by cloning the next repository into t
 Then clone this repository:  
 `$ git clone https://github.com/rfzeg/apriltag_robot_pose.git`  
 
-Compile the package with `catkin_make`.
+Compile the package with `catkin_make` and source your workspace.
 
 ## Run
 
@@ -26,28 +28,36 @@ Then spawn a robot that publishes camera images into ROS. The standard for camer
 + /image_raw - an unmodified camera image
 + /camera_info - information about the camera calibration
 
-Finally start the AprilTag detector node by executing:  
+Next start the AprilTag detector node by executing:  
 `$ roslaunch apriltag_robot_pose apriltag_detector.launch`  
+
+Finally run the robot_pose node:  
+`$ rosrun apriltag_robot_pose robot_pose.py`  
 
 ## Optional Checks
 
-On a new terminal run this command to see the existing topics:
-
+On a new terminal run this command to see the existing topics:  
 `$ rostopic list`  
 
-A set of topics published by the apriltag detector node should appear:
-<img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/rostopic_list_result.png">
+If everything is correct, a list of topics published by the apriltag detector node should appear:  
+<img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/rostopic_list_result.png">  
 Fig.1 The available topics shown by using the **rostopic list** command  
 
 Then check that AprilTags are being detected by placing the robot's camera in front of a tag and running:
 
 `$ rostopic echo /tag_detections`  
 
-<img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/rostopic_echo_result.png">
-Fig.2 The detected tags shown by using the **rostopic echo** command  
+<img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/rostopic_echo_result.png">  
+Fig.2 When a tag is detected values similar to these are displayed when running the **rostopic echo** command  
+
+To view raw images, for instance on the topic /udacity_bot/camera1/image\_raw, use:  
+`$ rosrun image_view image_view image:=/udacity_bot/camera1/image_raw`  
+
+To check that the parameters defined in the tag\_sizes.yaml file were loaded into the param server type:
+`$ rosparam get /apriltag_detector/tag_descriptions`  
 
 ## Known Issues
 + Gazebo is crashing as it is starting up: Usually, it is enough to run it again (probably several times).
++ ImportError No module named apriltags.msg: When using a custom messages, make sure the package containing it has been compiled.
 
 This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazebo 7.15.
-
