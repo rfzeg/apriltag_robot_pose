@@ -28,8 +28,11 @@ Then spawn a robot that publishes camera images into ROS. The standard for camer
 + /image_raw - an unmodified camera image
 + /camera_info - information about the camera calibration
 
-Next start the AprilTag detector node by executing:  
+Next start the AprilTag detector node:  
 `$ roslaunch apriltag_robot_pose apriltag_detector.launch`  
+
+And the static transform broadcaster:
+`$rosrun apriltag_robot_pose static_transform_broadcaster.py`  
 
 Finally run the robot_pose node:  
 `$ rosrun apriltag_robot_pose robot_pose.py`  
@@ -61,3 +64,6 @@ To check that the parameters defined in the tag\_sizes.yaml file were loaded int
 + ImportError No module named apriltags.msg: When using a custom messages, make sure the package containing it has been compiled.
 
 This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazebo 7.15.
+
+## Resources
++ http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20broadcaster%20%28Python%29
