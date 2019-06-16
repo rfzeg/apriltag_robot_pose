@@ -1,6 +1,6 @@
-<img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/ros_logo.png" align="right" width="101" height="27" />
-
-# AprilTag Robot Pose
+<img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/ros_logo.png" align="right" width="101" height="27" /> 
+ 
+## AprilTag Robot Pose
 Author: Roberto Zegers R.
 
 This ROS package implements a robot localization system using AprilTag markers. The tags used correspond to the family tag36h11, which has 587 different tags.
@@ -31,8 +31,8 @@ Then spawn a robot that publishes camera images into ROS. The standard for camer
 Next start the AprilTag detector node:  
 `$ roslaunch apriltag_robot_pose apriltag_detector.launch`  
 
-And the static transform broadcaster:
-`$rosrun apriltag_robot_pose static_transform_broadcaster.py`  
+And the static transform broadcaster:  
+`$ roslaunch apriltag_robot_pose static_transforms.launch`  
 
 Finally run the robot_pose node:  
 `$ rosrun apriltag_robot_pose robot_pose.py`  
@@ -53,15 +53,19 @@ Then check that AprilTags are being detected by placing the robot's camera in fr
 <img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/rostopic_echo_result.png">  
 Fig.2 When a tag is detected values similar to these are displayed when running the **rostopic echo** command  
 
+
 To view raw images, for instance on the topic /udacity_bot/camera1/image\_raw, use:  
 `$ rosrun image_view image_view image:=/udacity_bot/camera1/image_raw`  
 
-To check that the parameters defined in the tag\_sizes.yaml file were loaded into the param server type:
+To check that the parameters defined in the tag\_sizes.yaml file were loaded into the param server type:  
 `$ rosparam get /apriltag_detector/tag_descriptions`  
 
-## Known Issues
+To look at the numeric values of a transform between the world frame and any specific AR marker tag:  
+`$ rosrun tf tf_echo world tag_0`  
+
+## Troubleshooting
 + Gazebo is crashing as it is starting up: Usually, it is enough to run it again (probably several times).
-+ ImportError No module named apriltags.msg: When using a custom messages, make sure the package containing it has been compiled.
++ ImportError No module named apriltags.msg: When using custom messages, make sure the packages containing them have been compiled.
 
 This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazebo 7.15.
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Launches static transform broadcaster node to publish world frame to tag frame transforms -->
+
+<launch>
+
+<arg name="tag_poses_file_name" default="tag_poses_maze_3.yaml" doc="Specify a yaml param file, e.g.: tag_poses.yaml"/>
+
+  <node pkg="apriltag_robot_pose" type="static_transform_broadcaster.py" name="tf_world2tag_broadcaster" output="screen">
+    <param name="tag_poses_param_path" value="$(find apriltag_robot_pose)/config/$(arg tag_poses_file_name)"/>
+  </node>
+
+</launch>
