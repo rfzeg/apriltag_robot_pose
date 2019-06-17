@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Starts RVIZ with a preconfigured view, Joint State Publisher and Robot State Publisher -->
+
+<launch>
+
+  <!-- Determine use of GUI -->
+  <arg name="use_rviz" default="true" />
+
+  <!-- Publish joint_states to /tf tree, provides Rviz with transformation data -->
+  <!-- This package reads the robot_description parameter, finds all of the non-fixed joints -->
+  <!-- and publishes a JointState message with values (zero) for all joint positions -->
+  <!-- Joint states represent the current state of the robot, it is not a command and not a goal -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+  </node>
+
+
+  <!-- Publish tf transforms from real joint states or joint_state_publisher -->
+  <!-- Send robot states to tf based on URDF specified by the parameter robot_description -->
+  <!-- and the joint positions from the topic 'joint_states' -->
+  <!-- This node publishes a single message with the state of all joints of the robot combined-->
+  <!-- This enables Rviz to display the simulated robot -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" />
+
+  <!-- Run Rviz   -->
+  <node if="$(arg use_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find apriltag_robot_pose)/config/robot_pose.rviz"/>
+
+</launch>

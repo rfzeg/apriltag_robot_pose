@@ -25,8 +25,8 @@ xterm -e "roslaunch apriltag_robot_pose apriltag_detector.launch" &
 sleep 4
 
 # Execute the robot pose estimator node. The window will stay open until the user presses X.
-xterm -hold -e "rosrun apriltag_robot_pose robot_pose.py" # &
-#sleep 4
+xterm -hold -e "rosrun apriltag_robot_pose robot_pose.py" &
+sleep 2
 
 # Start RVIZ with a preconfigured view
-#xterm -e "roslaunch apriltag_robot_pose rviz.launch"
+xterm -e "roslaunch apriltag_robot_pose rviz.launch"

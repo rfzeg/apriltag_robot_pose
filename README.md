@@ -43,6 +43,8 @@ Or alternatively start the demo launching every node manually:
     `$ roslaunch apriltag_robot_pose apriltag_detector.launch`
 6.  **Next execute the robot pose estimator node:**  
     `$ rosrun apriltag_robot_pose robot_pose.py`
+7.  **In order to see the robot pose estimator node in action open RViz:**  
+    `$ roslaunch apriltag_robot_pose rviz.launch`
 
 ## Optional Checks
 
@@ -59,7 +61,7 @@ Then check that AprilTags are being detected by placing the robot's camera in fr
 
 <img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/rostopic_echo_result.png">  
 Fig.2 When a tag is detected values similar to these are displayed when running the **rostopic echo** command  
-
+  
 
 To view raw images, for instance on the topic /udacity_bot/camera1/image\_raw, use:  
 `$ rosrun image_view image_view image:=/udacity_bot/camera1/image_raw`  
