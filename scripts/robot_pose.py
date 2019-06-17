@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Calculate the absolute pose a robot based on the position of detected AprilTag markers
+# Estimate the absolute pose a robot based on the position of detected AprilTag markers
 # Author: Roberto Zegers R.
 # Date: 2019 June
 
@@ -13,14 +13,17 @@ import tf
 
 nrTfRetrys = 1
 retryTime = 0.05
-rospy.init_node('apriltag_robot_pose', anonymous=True)
+rospy.init_node('apriltag_robot_pose', log_level=rospy.DEBUG, anonymous=True)
 # tf listener
 lr = tf.TransformListener()
 
 def main():
     rospy.Subscriber("/tag_detections", AprilTagDetectionArray, apriltag_callback, queue_size = 1)
     rospy.sleep(1)
-    rospy.spin()
+    try:
+        rospy.spin()
+    except KeyboardInterrupt:
+        rospy.logwarn("Shutting down ROS AR Tag Robot Pose Estimator")
 
 def pose2poselist(pose):
     return [pose.pose.position.x, pose.pose.position.y, pose.pose.position.z, pose.pose.orientation.x, pose.pose.orientation.y, pose.pose.orientation.z, pose.pose.orientation.w]
@@ -75,31 +78,33 @@ def invPoselist(poselist):
     return xyzquat_from_matrix(np.linalg.inv(matrix_from_xyzquat(poselist)))
 
 def apriltag_callback(data):
-    # rospy.loginfo(rospy.get_caller_id() + "I heard %s", data)
+    # rospy.logdebug(rospy.get_caller_id() + "I heard %s", data)
     if data.detections:
         for detection in data.detections:
             tag_id = detection.id  # tag id
+            rospy.loginfo("Tag ID detected: %s \n", tag_id)
+            child_frame_id = "tag_" + str(tag_id)
+            # Check that detected tag is part of the transforms that are being broadcasted
+            if lr.frameExists(child_frame_id):
+                try:
+                    poselist_tag_camera = pose2poselist(detection.pose)
+                    rospy.logdebug("poselist_tag_camera: \n %s \n", poselist_tag_camera)
 
-            # TO-DO: add check that detected tag is part of broadcasted transforms
+                    poselist_tag_base = transformPose(lr, poselist_tag_camera, 'camera', 'robot_footprint')
+                    rospy.logdebug("transformPose(lr, poselist_tag_camera, 'camera', 'robot_footprint'): \n %s \n", poselist_tag_base)
 
-            child_frame_id = "/tag_" + str(tag_id)
+                    poselist_base_tag = invPoselist(poselist_tag_base)
+                    rospy.logdebug("invPoselist(poselist_tag_base): \n %s \n", poselist_base_tag)
 
-            rospy.loginfo("Tag ID: %s", tag_id)
-            rospy.loginfo("Detected pose: \n %s", detection.pose)
+                    poselist_base_map = transformPose(lr, poselist_base_tag, child_frame_id, targetFrame = 'map')
+                    rospy.logdebug("transformPose(lr, poselist_base_tag, sourceFrame = '%s', targetFrame = 'map'): \n %s \n", child_frame_id, poselist_base_map)
+                    rospy.loginfo("Robot pose estimation: \n %s \n", poselist_base_map)
 
-            poselist_tag_camera = pose2poselist(detection.pose)
-            rospy.loginfo("poselist_tag_camera: \n %s", poselist_tag_camera) # for debug
-
-            poselist_tag_base = transformPose(lr, poselist_tag_camera, '/camera', '/robot_footprint')
-            print "transformPose(lr, poselist_tag_camera, '/camera', '/robot_footprint'):", poselist_tag_base, '\n' # for debug
-
-            poselist_base_tag = invPoselist(poselist_tag_base)
-            print 'invPoselist(poselist_tag_base):', poselist_base_tag, '\n' # for debug
-
-            poselist_base_map = transformPose(lr, poselist_base_tag, child_frame_id, targetFrame = '/map')
-            print "transformPose(lr, poselist_base_tag, sourceFrame = '/apriltag', targetFrame = '/map'):", poselist_base_map, '\n' # for debug
-
-            rospy.loginfo("Robot pose: %s", poselist_base_map)
+	        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException), e:
+		    rospy.logerr(e)
+		    continue
+            else:
+                rospy.logwarn("No tf frame with name %s found. Check that the detected tag ID is part of the transforms that are being broadcasted by the static transform broadcaster.", child_frame_id)
 
 if __name__=='__main__':
     main()
