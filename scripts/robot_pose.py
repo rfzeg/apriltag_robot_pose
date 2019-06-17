@@ -14,8 +14,9 @@ import tf
 nrTfRetrys = 1
 retryTime = 0.05
 rospy.init_node('apriltag_robot_pose', log_level=rospy.DEBUG, anonymous=True)
-# tf listener
+# tf listener and broadcaster
 lr = tf.TransformListener()
+br = tf.TransformBroadcaster()
 
 def main():
     rospy.Subscriber("/tag_detections", AprilTagDetectionArray, apriltag_callback, queue_size = 1)
@@ -77,6 +78,21 @@ def matrix_from_xyzquat_np_array(arg1, arg2=None):
 def invPoselist(poselist):
     return xyzquat_from_matrix(np.linalg.inv(matrix_from_xyzquat(poselist)))
 
+def robotPoseTransform(br, pose=[0,0,0,0,0,0,1], frame_id='obj', parent_frame_id='map', npub=1):
+    if len(pose) == 7:
+        orientation = tuple(pose[3:7])
+    elif len(pose) == 6:
+        orientation = tfm.quaternion_from_euler(*pose[3:6])
+    else:
+        rospy.logerr("Bad length of pose")
+        return None
+
+    position = tuple(pose[0:3])
+
+    for j in range(npub):
+        br.sendTransform(position, orientation, rospy.Time.now(), frame_id, parent_frame_id)
+        rospy.sleep(0.01)
+
 def apriltag_callback(data):
     # rospy.logdebug(rospy.get_caller_id() + "I heard %s", data)
     if data.detections:
@@ -99,6 +115,8 @@ def apriltag_callback(data):
                     poselist_base_map = transformPose(lr, poselist_base_tag, child_frame_id, targetFrame = 'map')
                     rospy.logdebug("transformPose(lr, poselist_base_tag, sourceFrame = '%s', targetFrame = 'map'): \n %s \n", child_frame_id, poselist_base_map)
                     rospy.loginfo("Robot pose estimation: \n %s \n", poselist_base_map)
+
+                    robotPoseTransform(br, pose = poselist_base_map, frame_id = 'robot_footprint', parent_frame_id = 'map')
 
 	        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException), e:
 		    rospy.logerr(e)
