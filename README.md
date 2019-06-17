@@ -19,23 +19,30 @@ Then clone this repository:
 
 Compile the package with `catkin_make` and source your workspace.
 
-## Run
-
-First launch a Gazebo world that includes AprilTag markers, e.g.:  
-`$ roslaunch plywood_mazes maze_1_6x5.launch`  
-
-Then spawn a robot that publishes camera images into ROS. The standard for cameras on ROS is to publish to topics such as:  
+**Note:**  
+The package requires to spawn a robot that publishes camera images into ROS. The standard for cameras on ROS is to publish to topics such as:  
 + /image_raw - an unmodified camera image
 + /camera_info - information about the camera calibration
 
-Next start the AprilTag detector node:  
-`$ roslaunch apriltag_robot_pose apriltag_detector.launch`  
+## Run
 
-And the static transform broadcaster:  
-`$ roslaunch apriltag_robot_pose static_transforms.launch`  
+Start all neccesary components by executing the included bash script (xterm required):  
+`./start_demo.sh`
 
-Finally run the robot_pose node:  
-`$ rosrun apriltag_robot_pose robot_pose.py`  
+Or alternatively start the demo launching every node manually:  
+
+1.  **Fire up Gazebo world that includes AprilTag markers, e.g.:**  
+    `roslaunch plywood_mazes maze_3_6x6.launch`
+2.  **In a new terminal load a robot URDF file to the parameter server, e.g.:**  
+    `$ roslaunch udacity_bot robot_description.launch`
+3.  **And spawn the robot model, e.g.:**  
+    `$ roslaunch udacity_bot spawn_udacity_bot.launch`
+4.  **In a new window kick off the static transform broadcaster node:**  
+    `$ roslaunch apriltag_robot_pose static_transforms.launch`
+5.  **Then launch the AprilTag detector node to detect AR markers in the camera image:**  
+    `$ roslaunch apriltag_robot_pose apriltag_detector.launch`
+6.  **Next execute the robot pose estimator node:**  
+    `$ rosrun apriltag_robot_pose robot_pose.py`
 
 ## Optional Checks
 
@@ -60,8 +67,10 @@ To view raw images, for instance on the topic /udacity_bot/camera1/image\_raw, u
 To check that the parameters defined in the tag\_sizes.yaml file were loaded into the param server type:  
 `$ rosparam get /apriltag_detector/tag_descriptions`  
 
-To look at the numeric values of a transform between the world frame and any specific AR marker tag:  
-`$ rosrun tf tf_echo world tag_0`  
+To look at the numeric values of a transform between the map frame and any specific AR marker tag:  
+`$ rosrun tf tf_echo map tag_0`  
+or visualize the complete tf tree using RQT:  
+`$ rosrun rqt_tf_tree rqt_tf_tree`  
 
 ## Troubleshooting
 + Gazebo is crashing as it is starting up: Usually, it is enough to run it again (probably several times).
