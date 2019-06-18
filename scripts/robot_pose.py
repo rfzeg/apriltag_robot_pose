@@ -93,6 +93,20 @@ def robotPoseTransform(br, pose=[0,0,0,0,0,0,1], frame_id='obj', parent_frame_id
         br.sendTransform(position, orientation, rospy.Time.now(), frame_id, parent_frame_id)
         rospy.sleep(0.01)
 
+def averagePose(pose_list):
+    '''
+    Calculates the averge pose from a list of poses
+    Position is the average of all estimated positions
+    Orientation uses the orientation of the first detected marker
+    '''
+    avg_pose = []
+    avg_pose.append(np.mean([pose[0] for pose in pose_list]))
+    avg_pose.append(np.mean([pose[1] for pose in pose_list]))
+    avg_pose.append(np.mean([pose[2] for pose in pose_list]))
+    # Use the orientation of the first detected marker
+    avg_pose.extend(pose_list[0][3:7])
+    return avg_pose
+
 def apriltag_callback(data):
     # rospy.logdebug(rospy.get_caller_id() + "I heard %s", data)
     if data.detections:
@@ -123,8 +137,11 @@ def apriltag_callback(data):
                 rospy.logwarn("No tf frame with name %s found. Check that the detected tag ID is part of the transforms that are being broadcasted by the static transform broadcaster.", child_frame_id)
 
         for counter, robot_pose in enumerate(poselist_base_map):
-            robotPoseTransform(br, pose = robot_pose, frame_id = 'robot_footprint', parent_frame_id = 'map')
             rospy.logdebug("\n Robot pose estimation nr. %s: %s \n",str(counter), robot_pose)
+
+        estimated_avg_pose = averagePose(poselist_base_map)
+        robotPoseTransform(br, pose = estimated_avg_pose, frame_id = 'robot_footprint', parent_frame_id = 'map')
+        rospy.loginfo("\n Robot's estimated avg. pose from all AR tags detected:\n %s \n", estimated_avg_pose)
 
 if __name__=='__main__':
     main()

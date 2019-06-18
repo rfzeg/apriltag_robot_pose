@@ -83,5 +83,9 @@ If you would like the apriltag_robot_pose node to display output at the DEBUG ve
 
 This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazebo 7.15.
 
+## Further Improvements
++ Averaging quaternions is not straightforward. At the moment the robot's estimated orientation, when several AR markers are detected, is the orientation of the first detected marker.
+  One could include a new function to average quaternions from all detected markers for a better robot's orientation estimation.
+
 ## Resources
 + http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20broadcaster%20%28Python%29
