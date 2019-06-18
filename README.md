@@ -74,6 +74,9 @@ To look at the numeric values of a transform between the map frame and any speci
 or visualize the complete tf tree using RQT:  
 `$ rosrun rqt_tf_tree rqt_tf_tree`  
 
+If you would like the apriltag_robot_pose node to display output at the DEBUG verbosity level use:  
+`$rosservice call /apriltag_robot_pose/set_logger_level "{logger: 'rosout', level: 'debug'}"`  
+
 ## Troubleshooting
 + Gazebo is crashing as it is starting up: Usually, it is enough to run it again (probably several times).
 + ImportError No module named apriltags.msg: When using custom messages, make sure the packages containing them have been compiled.

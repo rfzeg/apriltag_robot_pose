@@ -13,7 +13,7 @@ import tf
 
 nrTfRetrys = 1
 retryTime = 0.05
-rospy.init_node('apriltag_robot_pose', log_level=rospy.DEBUG, anonymous=True)
+rospy.init_node('apriltag_robot_pose', log_level=rospy.INFO, anonymous=False)
 # tf listener and broadcaster
 lr = tf.TransformListener()
 br = tf.TransformBroadcaster()
@@ -99,7 +99,7 @@ def apriltag_callback(data):
         poselist_base_map = []
         for detection in data.detections:
             tag_id = detection.id  # tag id
-            rospy.loginfo("Tag ID detected: %s \n", tag_id)
+            rospy.logdebug("Tag ID detected: %s \n", tag_id)
             child_frame_id = "tag_" + str(tag_id)
             # Check that detected tag is part of the transforms that are being broadcasted
             if lr.frameExists(child_frame_id):
@@ -124,7 +124,7 @@ def apriltag_callback(data):
 
         for counter, robot_pose in enumerate(poselist_base_map):
             robotPoseTransform(br, pose = robot_pose, frame_id = 'robot_footprint', parent_frame_id = 'map')
-            rospy.loginfo("\n Robot pose estimation nr. %s: %s \n",str(counter), robot_pose)
+            rospy.logdebug("\n Robot pose estimation nr. %s: %s \n",str(counter), robot_pose)
 
 if __name__=='__main__':
     main()
