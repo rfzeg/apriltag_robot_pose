@@ -96,6 +96,7 @@ def robotPoseTransform(br, pose=[0,0,0,0,0,0,1], frame_id='obj', parent_frame_id
 def apriltag_callback(data):
     # rospy.logdebug(rospy.get_caller_id() + "I heard %s", data)
     if data.detections:
+        poselist_base_map = []
         for detection in data.detections:
             tag_id = detection.id  # tag id
             rospy.loginfo("Tag ID detected: %s \n", tag_id)
@@ -112,17 +113,18 @@ def apriltag_callback(data):
                     poselist_base_tag = invPoselist(poselist_tag_base)
                     rospy.logdebug("invPoselist(poselist_tag_base): \n %s \n", poselist_base_tag)
 
-                    poselist_base_map = transformPose(lr, poselist_base_tag, child_frame_id, targetFrame = 'map')
-                    rospy.logdebug("transformPose(lr, poselist_base_tag, sourceFrame = '%s', targetFrame = 'map'): \n %s \n", child_frame_id, poselist_base_map)
-                    rospy.loginfo("Robot pose estimation: \n %s \n", poselist_base_map)
-
-                    robotPoseTransform(br, pose = poselist_base_map, frame_id = 'robot_footprint', parent_frame_id = 'map')
+                    poselist_base_map.append(transformPose(lr, poselist_base_tag, child_frame_id, targetFrame = 'map'))
+                    rospy.logdebug("transformPose(lr, poselist_base_tag, sourceFrame = '%s', targetFrame = 'map'): \n %s \n", child_frame_id, poselist_base_map[-1])
 
 	        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException), e:
 		    rospy.logerr(e)
 		    continue
             else:
                 rospy.logwarn("No tf frame with name %s found. Check that the detected tag ID is part of the transforms that are being broadcasted by the static transform broadcaster.", child_frame_id)
+
+        for counter, robot_pose in enumerate(poselist_base_map):
+            robotPoseTransform(br, pose = robot_pose, frame_id = 'robot_footprint', parent_frame_id = 'map')
+            rospy.loginfo("\n Robot pose estimation nr. %s: %s \n",str(counter), robot_pose)
 
 if __name__=='__main__':
     main()
