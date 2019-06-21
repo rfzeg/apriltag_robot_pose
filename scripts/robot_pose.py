@@ -8,18 +8,19 @@
 import rospy
 from apriltags_ros.msg import AprilTagDetection, AprilTagDetectionArray
 from geometry_msgs.msg import Pose, PoseStamped, TransformStamped
-import tf.transformations as tfm
+from tf.transformations import quaternion_from_euler, translation_from_matrix, quaternion_from_matrix, compose_matrix, quaternion_matrix
 import numpy as np
-import tf
 import tf2_ros
+import tf2_geometry_msgs
 
 ## Global variables
 nrTfRetrys = 1
 retryTime = 0.05
 rospy.init_node('apriltag_robot_pose', log_level=rospy.INFO, anonymous=False)
-# Initializes a tf listener
-lr = tf.TransformListener()
-# Initializes a tf broadcaster for robot base w.r.t. map transform
+# Initializes a tf2 listener
+tf_buffer = tf2_ros.Buffer(rospy.Duration(10.0)) #tf buffer length
+tf_listener = tf2_ros.TransformListener(tf_buffer)
+# Initializes a tf2 broadcaster for robot base w.r.t. map transform
 br = tf2_ros.TransformBroadcaster()
 
 def main():
@@ -33,16 +34,16 @@ def main():
 def pose2poselist(pose):
     return [pose.pose.position.x, pose.pose.position.y, pose.pose.position.z, pose.pose.orientation.x, pose.pose.orientation.y, pose.pose.orientation.z, pose.pose.orientation.w]
 
-def transformPose(lr, pose, sourceFrame, targetFrame):
+def transformPose(pose, sourceFrame, target_frame):
     '''
     Converts a pose represented as a list in the sourceFrame
-    to a pose represented as a list in the targetFrame frame
+    to a pose represented as a list in the target_frame frame
     '''
     _pose = PoseStamped()
     _pose.header.frame_id = sourceFrame
     if len(pose) == 6:
         pose.append(0)
-        pose[3:7] = tfm.quaternion_from_euler(pose[3], pose[4], pose[5]).tolist()
+        pose[3:7] = quaternion_from_euler(pose[3], pose[4], pose[5]).tolist()
 
     _pose.pose.position.x = pose[0]
     _pose.pose.position.y = pose[1]
@@ -56,19 +57,37 @@ def transformPose(lr, pose, sourceFrame, targetFrame):
         try:
             t = rospy.Time(0)
             _pose.header.stamp = t
-            # converts a Pose object from its reference frame to a Pose object in the frame targetFrame
-            _pose_target = lr.transformPose(targetFrame, _pose)
-            p = _pose_target.pose.position
-            o = _pose_target.pose.orientation
+            # converts a Pose object from its reference frame to a Pose object in the frame target_frame
+            transform = tf_buffer.lookup_transform(target_frame, 
+                                                   _pose.header.frame_id, #source frame
+                                                   rospy.Time(0), #get the tf at first available time
+                                                   rospy.Duration(1.0)) #wait for 1 second
+            pose_transformed = tf2_geometry_msgs.do_transform_pose(_pose, transform)
+            p = pose_transformed.pose.position
+            o = pose_transformed.pose.orientation
             return [p.x, p.y, p.z, o.x, o.y, o.z, o.w]
-        except Exception as ex:
-            rospy.logwarn(ex.message)
+        except (tf2_ros.LookupException), e1:
+            print("ERROR: LookupException!")
+            rospy.logerr(e1)
+            rospy.logwarn("No tf frame with name %s found. Check that the detected tag ID is part of the transforms that are being broadcasted by the static transform broadcaster.", target_frame)
+            continue
+        except (tf2_ros.ConnectivityException), e2:
+            rospy.logwarn(e2)
+            rospy.logerr("ERROR: ConnectivityException!")
+            continue
+        except (tf2_ros.ExtrapolationException), e3:
+            rospy.logwarn(e3)
+            rospy.logerr("ERROR: ExtrapolationException!")
+            continue
+        except Exception as e4:
+            rospy.logwarn(e4)
+            rospy.logerr("Unexpected error when transforming Pose")
+        finally:
             rospy.sleep(retryTime)
-
     return None
 
 def xyzquat_from_matrix(matrix):
-    return tfm.translation_from_matrix(matrix).tolist() + tfm.quaternion_from_matrix(matrix).tolist()
+    return translation_from_matrix(matrix).tolist() + quaternion_from_matrix(matrix).tolist()
 
 def matrix_from_xyzquat(arg1, arg2=None):
     return matrix_from_xyzquat_np_array(arg1, arg2).tolist()
@@ -81,8 +100,7 @@ def matrix_from_xyzquat_np_array(arg1, arg2=None):
         translate = arg1[0:3]
         quaternion = arg1[3:7]
 
-    return np.dot(tfm.compose_matrix(translate=translate) ,
-                   tfm.quaternion_matrix(quaternion))
+    return np.dot(compose_matrix(translate=translate),quaternion_matrix(quaternion))
 
 def invPoselist(poselist):
     return xyzquat_from_matrix(np.linalg.inv(matrix_from_xyzquat(poselist)))
@@ -98,7 +116,7 @@ def broadcastRobotPoseTransform(br, pose=[0,0,0,0,0,0,1], child_frame_id='obj', 
     if len(pose) == 7:
         quaternion = tuple(pose[3:7])
     elif len(pose) == 6:
-        quaternion = tfm.quaternion_from_euler(*pose[3:6])
+        quaternion = quaternion_from_euler(*pose[3:6])
     else:
         rospy.logerr("Bad length of pose")
         return None
@@ -149,29 +167,22 @@ def apriltag_callback(data):
             tag_id = detection.id  # tag id
             rospy.logdebug("Tag ID detected: %s \n", tag_id)
             child_frame_id = "tag_" + str(tag_id)
-            # Check that detected tag corresponds to one of the tags whos position is being broadcasted by the static transform broadcaster node
-            if lr.frameExists(child_frame_id):
-                try:
-                    poselist_tag_wrt_camera = pose2poselist(detection.pose)
-                    rospy.logdebug("poselist_tag_wrt_camera: \n %s \n", poselist_tag_wrt_camera)
 
-                    # Calculate transform of tag w.r.t. robot base (in Rviz arrow points from tag (child) to robot base(parent))
-                    poselist_tag_wrt_base = transformPose(lr, poselist_tag_wrt_camera, 'camera', 'robot_footprint')
-                    rospy.logdebug("transformPose(lr, poselist_tag_wrt_camera, 'camera', 'robot_footprint'): \n %s \n", poselist_tag_wrt_base)
+            # Convert the deteced tag Pose object to tag pose representation as a list, only for convinience
+            poselist_tag_wrt_camera = pose2poselist(detection.pose)
+            rospy.logdebug("poselist_tag_wrt_camera: \n %s \n", poselist_tag_wrt_camera)
 
-                    # Calculate transform of robot base w.r.t. tag (in Rviz arrow points from robot base (child) to tag(parent))
-                    poselist_base_wrt_tag = invPoselist( poselist_tag_wrt_base)
-                    rospy.logdebug("invPoselist( poselist_tag_wrt_base): \n %s \n", poselist_base_wrt_tag)
+            # Calculate transform of tag w.r.t. robot base (in Rviz arrow points from tag (child) to robot base(parent))
+            poselist_tag_wrt_base = transformPose(poselist_tag_wrt_camera, 'camera', 'robot_footprint')
+            rospy.logdebug("transformPose(poselist_tag_wrt_camera, 'camera', 'robot_footprint'): \n %s \n", poselist_tag_wrt_base)
 
-                    # Calculate transform of robot base w.r.t. map (in Rviz arrow points from robot base (child) to map (parent)), returns pose of robot in the map coordinates
-                    poselist_base_wrt_map.append(transformPose(lr, poselist_base_wrt_tag, child_frame_id, targetFrame = 'map'))
-                    rospy.logdebug("transformPose(lr, poselist_base_wrt_tag, sourceFrame = '%s', targetFrame = 'map'): \n %s \n", child_frame_id, poselist_base_wrt_map[-1])
+            # Calculate transform of robot base w.r.t. tag (in Rviz arrow points from robot base (child) to tag(parent))
+            poselist_base_wrt_tag = invPoselist(poselist_tag_wrt_base)
+            rospy.logdebug("invPoselist( poselist_tag_wrt_base): \n %s \n", poselist_base_wrt_tag)
 
-	        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException), e:
-		    rospy.logerr(e)
-		    continue
-            else:
-                rospy.logwarn("No tf frame with name %s found. Check that the detected tag ID is part of the transforms that are being broadcasted by the static transform broadcaster.", child_frame_id)
+            # Calculate transform of robot base w.r.t. map (in Rviz arrow points from robot base (child) to map (parent)), returns pose of robot in the map coordinates
+            poselist_base_wrt_map.append(transformPose(poselist_base_wrt_tag, child_frame_id, target_frame = 'map'))
+            rospy.logdebug("transformPose(poselist_base_wrt_tag, sourceFrame = '%s', target_frame = 'map'): \n %s \n", child_frame_id, poselist_base_wrt_map[-1])
 
         for counter, robot_pose in enumerate(poselist_base_wrt_map):
             rospy.logdebug("\n Robot pose estimation nr. %s: %s \n",str(counter), robot_pose)
