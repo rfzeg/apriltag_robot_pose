@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 echo ""
 echo "ROS AR Tag Robot Pose Estimator Demo"
 echo ""
@@ -8,11 +9,10 @@ echo ""
 xterm -e "roslaunch plywood_mazes maze_3_6x6.launch" &
 sleep 6
 
-# Load robot description to parameter server
-xterm -e "roslaunch udacity_bot robot_description.launch" &
-sleep 2
+# Prompt for a key press to continue after Gazebo has loaded
+read -n 1 -r -s -p "Press any key to continue once Gazebo has loaded or Ctrl+C to abort..."
 
-# Spawn a robot
+# Load robot description to parameter server and spawn a robot
 xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch" &
 sleep 4
 
@@ -28,5 +28,18 @@ sleep 4
 xterm -hold -e "rosrun apriltag_robot_pose robot_pose.py" &
 sleep 2
 
-# Start RVIZ with a preconfigured view
-xterm -e "roslaunch apriltag_robot_pose rviz.launch"
+# Allow for Rviz choice
+read -p "Do you want to start RVIZ with a preconfigured view (y/n): " input_choice
+
+if [ "$input_choice" = "y" ]
+then
+  # Start RVIZ
+  xterm -e "roslaunch apriltag_robot_pose rviz.launch"
+elif [ "$input_choice" = "n" ]
+then
+  echo "Rviz *NOT* started!"
+  break
+else
+  echo "Warning: Not an acceptable option. Choose (y/n).
+          "
+fi
