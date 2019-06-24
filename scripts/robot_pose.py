@@ -20,11 +20,24 @@ rospy.init_node('apriltag_robot_pose', log_level=rospy.INFO, anonymous=False)
 # Initializes a tf2 listener
 tf_buffer = tf2_ros.Buffer(rospy.Duration(10.0)) #tf buffer length
 tf_listener = tf2_ros.TransformListener(tf_buffer)
-# Initializes a tf2 broadcaster for robot base w.r.t. map transform
-br = tf2_ros.TransformBroadcaster()
+# Initializes a tf2 broadcaster for our map(parent)->odom(child) == odom w.r.t. map transform
+br_odom_wrt_map = tf2_ros.TransformBroadcaster()
+# Initializes an empty TransformStamped object for our map(parent)->odom(child) == odom w.r.t. map transform
+ts_odom_wrt_map = TransformStamped()
+# Initializes an empty TransformStamped object for our map(parent)->base(child) == base w.r.t. map transform
+ts_base_wrt_map = TransformStamped()
 
 def main():
     rospy.Subscriber("/tag_detections", AprilTagDetectionArray, apriltag_callback, queue_size = 1)
+    # get base w.r.t. odom transform
+    try:
+        # Look for the odom->base_footprint transform
+        ts_base_wrt_odom = tf_buffer.lookup_transform('odom', 'robot_footprint', rospy.Time(), rospy.Duration(4.0)) # will wait 4s for transform to become available
+        # note: ts_base_wrt_map is calculated every time the subscriber callback is executed
+        odom_wrt_map_tf_broadcaster(ts_base_wrt_odom, ts_base_wrt_map)
+    except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException), ex:
+        rospy.logerr(ex)
+
     rospy.sleep(1)
     try:
         rospy.spin()
@@ -105,10 +118,10 @@ def matrix_from_xyzquat_np_array(arg1, arg2=None):
 def invPoselist(poselist):
     return xyzquat_from_matrix(np.linalg.inv(matrix_from_xyzquat(poselist)))
 
-def broadcastRobotPoseTransform(br, pose=[0,0,0,0,0,0,1], child_frame_id='obj', parent_frame_id='map', npub=1):
+def base_wrt_map_transform(pose=[0,0,0,0,0,0,1], child_frame_id='obj', parent_frame_id='map', npub=1):
     '''
     Converts from a representation of a pose as a list to a TransformStamped object (translation and rotation (Quaternion) representation)
-    Then broadcasts that TransformStamped object
+    Then keeps that as a TransformStamped object
     Note:
     In Rviz it will be shown as an arrow from the robot base (child) to the map (parent)
     In RQT it will be shown as an arrow from the map (parent) to the robot base (child)
@@ -122,8 +135,6 @@ def broadcastRobotPoseTransform(br, pose=[0,0,0,0,0,0,1], child_frame_id='obj', 
         return None
 
     position = tuple(pose[0:3])
-    # Initializes an empty TransformStamped object (should it be global?)
-    ts_base_wrt_map = TransformStamped()
     ## Fill in TransformStamped object
     # Stamps the transform with the current time
     ts_base_wrt_map.header.stamp = rospy.Time.now()
@@ -139,11 +150,6 @@ def broadcastRobotPoseTransform(br, pose=[0,0,0,0,0,0,1], child_frame_id='obj', 
     ts_base_wrt_map.transform.rotation.y = quaternion[1]
     ts_base_wrt_map.transform.rotation.z = quaternion[2]
     ts_base_wrt_map.transform.rotation.w = quaternion[3]
-
-    for j in range(npub):
-        # Broadcast the transform of robot base w.r.t. map
-        br.sendTransform(ts_base_wrt_map)
-        rospy.sleep(0.01)
 
 def averagePose(pose_list):
     '''
@@ -188,9 +194,36 @@ def apriltag_callback(data):
             rospy.logdebug("\n Robot pose estimation nr. %s: %s \n",str(counter), robot_pose)
 
         estimated_avg_pose = averagePose(poselist_base_wrt_map)
-        # Broadcasts transform of robot base w.r.t. map or pose of robot in the map coordinates
-        broadcastRobotPoseTransform(br, pose = estimated_avg_pose, child_frame_id = 'robot_footprint', parent_frame_id = 'map')
-        rospy.loginfo("\n Robot's estimated avg. pose from all AR tags detected:\n %s \n", estimated_avg_pose)
+        rospy.logdebug("\n Robot's estimated avg. pose from all AR tags detected:\n %s \n", estimated_avg_pose)
+
+        # Calculate transform of robot base w.r.t. map or pose of robot in the map coordinates
+        base_wrt_map_transform(pose = estimated_avg_pose, child_frame_id = 'robot_footprint', parent_frame_id = 'map')
+
+def odom_wrt_map_tf_broadcaster(ts_base_wrt_odom, ts_base_wrt_map):
+        # Sets the frame ID of the transform to the map frame
+        ts_odom_wrt_map.header.frame_id = "map"
+        # Stamps the transform with the current time
+        ts_odom_wrt_map.header.stamp = rospy.Time.now()
+        # Sets the child frame ID to odom
+        ts_odom_wrt_map.child_frame_id = "odom"
+        # Fill in the transform
+        # The entire tf is map->odom->robot_footprint. The map->robot_footprint is calculated by the AR Tags robot pose estimation.
+        # Here we have to calculate map->odom because we can't publish map->robot_footprint directly
+        # This is due to the fact that the robot_footprint frame already has odom as parent and a frame cannot have more than one parent.
+        # So we calculate map->odom instead by finding map->robot_footprint and then subtracting the tf from odom->robot_footprint
+
+        # Subtracting odom(parent) to base(child) from map to base and send map(parent) to odom(child) instead
+        # TF defines the "forward transform" as transforming from parent to child
+        ts_odom_wrt_map.transform.translation.x = ts_base_wrt_map.transform.translation.x - ts_base_wrt_odom.transform.translation.x
+        ts_odom_wrt_map.transform.translation.y = ts_base_wrt_map.transform.translation.y - ts_base_wrt_odom.transform.translation.y
+        ts_odom_wrt_map.transform.translation.z = ts_base_wrt_map.transform.translation.z - ts_base_wrt_odom.transform.translation.z
+        # Quick & dirty trick: Just use the same rotation as odometry [check !!]
+        # To subtract two quaterion rotations, multiply by the inverse
+        # transform.rotation = newRotation * Quaternion.Inverse(otherTransform.rotation) 
+        ts_odom_wrt_map.transform.rotation = ts_base_wrt_odom.transform.rotation
+        # Broadcast the transform
+        br_odom_wrt_map.sendTransform(ts_odom_wrt_map)
+        rospy.loginfo("\n Broadcasted odom w.r.t. map transform as: \n %s", ts_odom_wrt_map)
 
 if __name__=='__main__':
     main()
