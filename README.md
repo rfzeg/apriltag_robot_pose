@@ -37,14 +37,19 @@ Or alternatively start the demo launching every node manually:
     `$ roslaunch udacity_bot robot_description.launch`
 3.  **And spawn the robot model, e.g.:**  
     `$ roslaunch udacity_bot spawn_udacity_bot.launch`
-4.  **In a new window kick off the static transform broadcaster node:**  
+4.  **Launch the noisy_odom node:**  
+    `$ rosrun apriltag_robot_pose noisy_odom.py`
+5.  **In a new window kick off the static transform broadcaster node:**  
     `$ roslaunch apriltag_robot_pose static_transforms.launch`
-5.  **Then launch the AprilTag detector node to detect AR markers in the camera image:**  
+6.  **Then launch the AprilTag detector node to detect AR markers in the camera image:**  
     `$ roslaunch apriltag_robot_pose apriltag_detector.launch`
-6.  **Next execute the robot pose estimator node:**  
+7.  **Next execute the robot pose estimator node:**  
     `$ rosrun apriltag_robot_pose robot_pose.py`
-7.  **In order to see the robot pose estimator node in action open RViz:**  
+8.  **In order to see the robot pose estimator node in action open RViz:**  
     `$ roslaunch apriltag_robot_pose rviz.launch`
+
+If you want to manually control the robot, open a new terminal window and run:  
+`$ rosrun rqt_robot_steering rqt_robot_steering`
 
 ## Optional Checks
 
@@ -62,9 +67,9 @@ Then check that AprilTags are being detected by placing the robot's camera in fr
 <img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/rostopic_echo_result.png">  
 Fig.2 When a tag is detected values similar to these are displayed when running the **rostopic echo** command  
   
-
 To view raw images, for instance on the topic /udacity_bot/camera1/image\_raw, use:  
 `$ rosrun image_view image_view image:=/udacity_bot/camera1/image_raw`  
+<img src="https://raw.githubusercontent.com/rfzeg/apriltag_robot_pose/master/docs/imgs/image_view_example.png">  
 
 To check that the parameters defined in the tag\_sizes.yaml file were loaded into the param server type:  
 `$ rosparam get /apriltag_detector/tag_descriptions`  
@@ -89,3 +94,4 @@ This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazeb
 
 ## Resources
 + http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20broadcaster%20%28Python%29
++ The general relationship between the map, odom and base\_link frames is already described in [Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html).
