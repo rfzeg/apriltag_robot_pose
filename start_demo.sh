@@ -11,9 +11,10 @@ sleep 6
 
 # Prompt for a key press to continue after Gazebo has loaded
 read -n 1 -r -s -p "Press any key to continue once Gazebo has loaded or Ctrl+C to abort..."
+echo ""
 
 # Load robot description to parameter server and spawn a robot
-xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch" &
+xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect" &
 sleep 4
 
 # Start noisy odometry node
@@ -23,6 +24,7 @@ sleep 4
 # Kick off static transform broadcaster node
 xterm -e "roslaunch apriltag_robot_pose static_transforms.launch" &
 sleep 2
+
 
 # Launch AprilTag detector node to detect AR markers in space
 xterm -e "roslaunch apriltag_robot_pose apriltag_detector.launch" &
@@ -42,7 +44,11 @@ then
   xterm -e "roslaunch apriltag_robot_pose rviz.launch"
 elif [ "$input_choice" = "n" ]
 then
+  echo ""
   echo "Rviz *NOT* started!"
+  echo ""
 else
+  echo ""
   echo "Warning: Not an acceptable option. Choose (y/n)"
+  echo ""
 fi
