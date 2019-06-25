@@ -26,23 +26,22 @@ br_odom_wrt_map = tf2_ros.TransformBroadcaster()
 ts_odom_wrt_map = TransformStamped()
 # Initializes an empty TransformStamped object for our map(parent)->base(child) == base w.r.t. map transform
 ts_base_wrt_map = TransformStamped()
+r = rospy.Rate(10) # 10hz
 
 def main():
     rospy.Subscriber("/tag_detections", AprilTagDetectionArray, apriltag_callback, queue_size = 1)
     # get base w.r.t. odom transform
-    try:
-        # Look for the odom->base_footprint transform
-        ts_base_wrt_odom = tf_buffer.lookup_transform('odom', 'robot_footprint', rospy.Time(), rospy.Duration(4.0)) # will wait 4s for transform to become available
-        # note: ts_base_wrt_map is calculated every time the subscriber callback is executed
-        odom_wrt_map_tf_broadcaster(ts_base_wrt_odom, ts_base_wrt_map)
-    except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException), ex:
-        rospy.logerr(ex)
-
-    rospy.sleep(1)
-    try:
-        rospy.spin()
-    except KeyboardInterrupt:
-        rospy.logwarn("Shutting down ROS AR Tag Robot Pose Estimator")
+    while not rospy.is_shutdown():
+        try:
+            # Look for the odom_perfect->base_footprint transform
+            rospy.logdebug("Looking for the odom_perfect->robot_footprint transform")
+            ts_base_wrt_odom = tf_buffer.lookup_transform('odom_perfect', 'robot_footprint', rospy.Time(), rospy.Duration(1.0)) # will wait 4s for transform to become available
+            # note: ts_base_wrt_map is calculated every time the subscriber callback is executed
+            odom_wrt_map_tf_broadcaster(ts_base_wrt_odom, ts_base_wrt_map)
+            rospy.loginfo("Broadcasted odom wrt map transform!")
+        except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException), ex:
+            rospy.logerr(ex)
+        r.sleep()
 
 def pose2poselist(pose):
     return [pose.pose.position.x, pose.pose.position.y, pose.pose.position.z, pose.pose.orientation.x, pose.pose.orientation.y, pose.pose.orientation.z, pose.pose.orientation.w]
@@ -223,7 +222,7 @@ def odom_wrt_map_tf_broadcaster(ts_base_wrt_odom, ts_base_wrt_map):
         ts_odom_wrt_map.transform.rotation = ts_base_wrt_odom.transform.rotation
         # Broadcast the transform
         br_odom_wrt_map.sendTransform(ts_odom_wrt_map)
-        rospy.loginfo("\n Broadcasted odom w.r.t. map transform as: \n %s", ts_odom_wrt_map)
+        rospy.logdebug("\n Broadcasted odom w.r.t. map transform as: \n %s", ts_odom_wrt_map)
 
 if __name__=='__main__':
     main()
