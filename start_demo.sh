@@ -3,7 +3,7 @@
 echo ""
 echo "ROS AR Tag Robot Pose Estimator Demo"
 echo ""
-# The -e option to xterm is useful for running a single command and then exiting (or closing xterm after a ctrl+C)
+# The -e option to xterm is useful for running a single command and then exiting (or closing xterm after a Ctrl+C)
 
 # Fire up Gazebo world with maze environment
 xterm -e "roslaunch plywood_mazes maze_3_6x6.launch" &
@@ -30,8 +30,8 @@ sleep 2
 xterm -e "roslaunch apriltag_robot_pose apriltag_detector.launch" &
 sleep 4
 
-# Execute the robot pose estimator node. The window will stay open until the user presses X.
-xterm -hold -e "rosrun apriltag_robot_pose robot_pose.py" &
+# Execute the robot pose estimator node.
+xterm -hold -e "roslaunch apriltag_robot_pose robot_pose.launch" &
 sleep 2
 
 # Allow for Rviz choice
@@ -41,7 +41,10 @@ read -p "Do you want to start RVIZ with a preconfigured view (y/n): " input_choi
 if [ "$input_choice" = "y" ]
 then
   # Start RVIZ
-  xterm -e "roslaunch apriltag_robot_pose rviz.launch"
+  xterm -e "roslaunch apriltag_robot_pose rviz.launch" &
+  sleep 4
+  # Load pre-made map using map server
+  xterm -e "roslaunch plywood_mazes map_server_maze_3.launch"
 elif [ "$input_choice" = "n" ]
 then
   echo ""

@@ -8,6 +8,7 @@ This ROS package implements a robot localization system using AprilTag markers. 
 ## Dependencies
 Packages on which this package depends:
 + [apriltags_ros](https://github.com/RIVeR-Lab/apriltags_ros)
++ [map_server](http://wiki.ros.org/map_server)
 
 ## Install
 
@@ -47,6 +48,8 @@ Or alternatively start the demo launching every node manually:
     `$ rosrun apriltag_robot_pose robot_pose.py`
 8.  **In order to see the robot pose estimator node in action open RViz:**  
     `$ roslaunch apriltag_robot_pose rviz.launch`
+9.  **Launch the map_server node to see the map in RViz, e.g.:**  
+    `$ roslaunch plywood_mazes map_server_maze_3.launch`
 
 If you want to manually control the robot, open a new terminal window and run:  
 `$ rosrun rqt_robot_steering rqt_robot_steering`
@@ -80,11 +83,13 @@ or visualize the complete tf tree using RQT:
 `$ rosrun rqt_tf_tree rqt_tf_tree`  
 
 If you would like the apriltag_robot_pose node to display output at the DEBUG verbosity level use:  
-`$rosservice call /apriltag_robot_pose/set_logger_level "{logger: 'rosout', level: 'debug'}"`  
+`$ rosservice call /apriltag_robot_pose/set_logger_level "{logger: 'rosout', level: 'debug'}"`  
 
 ## Troubleshooting
 + Gazebo is crashing as it is starting up: Usually, it is enough to run it again (probably several times).
 + ImportError No module named apriltags.msg: When using custom messages, make sure the packages containing them have been compiled.
++ ERROR: cannot launch node of type [map_server/map_server]: map_server
+  You have to install map_server first: `$ sudo apt install ros-kinetic-map-server`
 
 This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazebo 7.15.
 
