@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Starts AR Marker Robot Global Pose Estimation Node configured -->
+
+<launch>
+<!-- This node publishes the transform of "odom_frame"(child) w.r.t "world_fixed_frame" (parent) -->
+<arg name="namespace" default="" />
+<arg name="world_fixed_frame" default="/map" doc="Requirement: include a forward slash (/)"/>
+<arg name="odom_frame" default="/odom" doc="Requirement: include a forward slash (/)"/>
+<arg name="base_frame" default="/robot_footprint" doc="Requirement: include a forward slash (/)"/>
+<arg name="camera_frame" default="/camera" doc="Requirement: include a forward slash (/)"/>
+
+    <node pkg="apriltag_robot_pose" type="robot_pose.py" name="ar_marker_global_pose_estimation" output="screen">
+        <param name="world_fixed_frame" value="$(arg namespace)$(arg world_fixed_frame)"/>
+        <param name="odom_frame" value="$(arg namespace)$(arg odom_frame)"/>
+        <param name="base_frame" value="$(arg namespace)$(arg base_frame)"/>
+        <param name="camera_frame" value="$(arg namespace)$(arg camera_frame)"/>
+    </node>
+
+</launch>

@@ -28,14 +28,53 @@ ts_odom_wrt_map = TransformStamped()
 ts_base_wrt_map = TransformStamped()
 r = rospy.Rate(10) # 10hz
 
+def strip_forward_slash(frame_id):
+    '''
+    Removes forward slash for tf2 to work
+    '''
+    if frame_id[0] == "/":
+        new_frame_id = frame_id[1:]
+    else:
+        new_frame_id = frame_id
+    return new_frame_id
+
+# get the robot's base frame
+if rospy.has_param("~base_frame"):
+    # forward slash must be removed to work with tf2
+    base_frame = strip_forward_slash(rospy.get_param("~base_frame"))
+else:
+    base_frame = "base_footprint"
+    rospy.logwarn("base_footprint frame is set to default: base_footprint")
+
+# get odom frame, the (noisy) odometry
+if rospy.has_param("~odom_frame"):
+    odom_frame = strip_forward_slash(rospy.get_param("~odom_frame"))
+else:
+    odom_frame = "odom"
+    rospy.logwarn("odometry frame of reference is set to default: odom")
+
+# get world_fixed_frame
+if rospy.has_param("~world_fixed_frame"):
+    world_fixed_frame = strip_forward_slash(rospy.get_param("~world_fixed_frame"))
+else:
+    world_fixed_frame = "map"
+    rospy.logwarn("world_fixed_frame frame is set to default: map")
+
+# get the camera frame
+if rospy.has_param("~camera_frame"):
+    camera_frame = strip_forward_slash(rospy.get_param("~camera_frame"))
+else:
+    camera_frame = "camera"
+    rospy.logwarn("camera frame of reference is set to default: camera")
+
 def main():
     rospy.Subscriber("/tag_detections", AprilTagDetectionArray, apriltag_callback, queue_size = 1)
     # get base w.r.t. odom transform
     while not rospy.is_shutdown():
         try:
-            # Look for the odom_perfect->base_footprint transform
-            rospy.logdebug("Looking for the odom_perfect->robot_footprint transform")
-            ts_base_wrt_odom = tf_buffer.lookup_transform('odom_perfect', 'robot_footprint', rospy.Time(), rospy.Duration(1.0)) # will wait 4s for transform to become available
+            # Look for the odom->base_footprint transform
+            rospy.logdebug("Looking for the odom->robot_footprint transform")
+            ts_base_wrt_odom = tf_buffer.lookup_transform(odom_frame, base_frame, rospy.Time(), rospy.Duration(1.0)) # will wait 4s for transform to become available
             # note: ts_base_wrt_map is calculated every time the subscriber callback is executed
             odom_wrt_map_tf_broadcaster(ts_base_wrt_odom, ts_base_wrt_map)
             rospy.loginfo("Broadcasted odom wrt map transform!")
@@ -117,7 +156,7 @@ def matrix_from_xyzquat_np_array(arg1, arg2=None):
 def invPoselist(poselist):
     return xyzquat_from_matrix(np.linalg.inv(matrix_from_xyzquat(poselist)))
 
-def base_wrt_map_transform(pose=[0,0,0,0,0,0,1], child_frame_id='obj', parent_frame_id='map', npub=1):
+def base_wrt_map_transform(pose=[0,0,0,0,0,0,1], child_frame_id='obj', parent_frame_id = world_fixed_frame, npub=1):
     '''
     Converts from a representation of a pose as a list to a TransformStamped object (translation and rotation (Quaternion) representation)
     Then keeps that as a TransformStamped object
@@ -178,7 +217,7 @@ def apriltag_callback(data):
             rospy.logdebug("poselist_tag_wrt_camera: \n %s \n", poselist_tag_wrt_camera)
 
             # Calculate transform of tag w.r.t. robot base (in Rviz arrow points from tag (child) to robot base(parent))
-            poselist_tag_wrt_base = transformPose(poselist_tag_wrt_camera, 'camera', 'robot_footprint')
+            poselist_tag_wrt_base = transformPose(poselist_tag_wrt_camera, camera_frame, base_frame)
             rospy.logdebug("transformPose(poselist_tag_wrt_camera, 'camera', 'robot_footprint'): \n %s \n", poselist_tag_wrt_base)
 
             # Calculate transform of robot base w.r.t. tag (in Rviz arrow points from robot base (child) to tag(parent))
@@ -186,7 +225,7 @@ def apriltag_callback(data):
             rospy.logdebug("invPoselist( poselist_tag_wrt_base): \n %s \n", poselist_base_wrt_tag)
 
             # Calculate transform of robot base w.r.t. map (in Rviz arrow points from robot base (child) to map (parent)), returns pose of robot in the map coordinates
-            poselist_base_wrt_map.append(transformPose(poselist_base_wrt_tag, child_frame_id, target_frame = 'map'))
+            poselist_base_wrt_map.append(transformPose(poselist_base_wrt_tag, child_frame_id, target_frame = world_fixed_frame))
             rospy.logdebug("transformPose(poselist_base_wrt_tag, sourceFrame = '%s', target_frame = 'map'): \n %s \n", child_frame_id, poselist_base_wrt_map[-1])
 
         for counter, robot_pose in enumerate(poselist_base_wrt_map):
@@ -196,15 +235,15 @@ def apriltag_callback(data):
         rospy.logdebug("\n Robot's estimated avg. pose from all AR tags detected:\n %s \n", estimated_avg_pose)
 
         # Calculate transform of robot base w.r.t. map or pose of robot in the map coordinates
-        base_wrt_map_transform(pose = estimated_avg_pose, child_frame_id = 'robot_footprint', parent_frame_id = 'map')
+        base_wrt_map_transform(pose = estimated_avg_pose, child_frame_id = base_frame, parent_frame_id = world_fixed_frame)
 
 def odom_wrt_map_tf_broadcaster(ts_base_wrt_odom, ts_base_wrt_map):
         # Sets the frame ID of the transform to the map frame
-        ts_odom_wrt_map.header.frame_id = "map"
+        ts_odom_wrt_map.header.frame_id = world_fixed_frame
         # Stamps the transform with the current time
         ts_odom_wrt_map.header.stamp = rospy.Time.now()
         # Sets the child frame ID to odom
-        ts_odom_wrt_map.child_frame_id = "odom"
+        ts_odom_wrt_map.child_frame_id = odom_frame
         # Fill in the transform
         # The entire tf is map->odom->robot_footprint. The map->robot_footprint is calculated by the AR Tags robot pose estimation.
         # Here we have to calculate map->odom because we can't publish map->robot_footprint directly
