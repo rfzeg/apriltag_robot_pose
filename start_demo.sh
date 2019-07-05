@@ -14,7 +14,8 @@ read -n 1 -r -s -p "Press any key to continue once Gazebo has loaded or Ctrl+C t
 echo ""
 
 # Load robot description to parameter server and spawn a robot
-xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect" &
+xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch odometryTopic:=odom_perfect" &
+#xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect" &
 sleep 4
 
 # Start noisy odometry node
@@ -25,13 +26,12 @@ sleep 4
 xterm -e "roslaunch apriltag_robot_pose static_transforms.launch" &
 sleep 2
 
-
 # Launch AprilTag detector node to detect AR markers in space
-xterm -e "roslaunch apriltag_robot_pose apriltag_detector.launch" &
+xterm -e "roslaunch apriltag_robot_pose apriltag_detector.launch image_topic:=/camera/rgb/image_raw info_topic:=/camera/rgb/camera_info" &
 sleep 4
 
 # Execute the robot pose estimator node.
-xterm -hold -e "roslaunch apriltag_robot_pose robot_pose.launch" &
+xterm -hold -e "roslaunch apriltag_robot_pose robot_pose.launch camera_frame:=/camera_rgbd_frame" &
 sleep 2
 
 # Allow for Rviz choice
