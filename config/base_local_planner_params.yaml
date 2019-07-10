@@ -1,0 +1,31 @@
+# move_base
+controller_frequency: 3.0 # rate at which move_base will be called in Hz (default: 20.0)
+planner_frequency: 0.5 # rate at which re-calculate the global path, in Hz (default: 0.0)
+
+TrajectoryPlannerROS:
+
+  holonomic_robot: false
+  
+  # Parameters for setting the velocity limits of the robot
+  max_vel_x: 0.3 # max fwd velocity allowed for the base in mt/s (default: 0.5)
+  min_vel_x: 0.05 # min fwd velocity allowed, should be high enough to overcome friction (default: 0.1)
+
+  # Parameters for scoring trajectories
+  pdist_scale: 2.0 # weighting for how much the local path should stay close to the global path (default: 0.6)
+  gdist_scale: 3.0 # weighting for how much the controller should attempt to reach its local goal, also controls speed (default 0.8)
+  occdist_scale: 0.2 # weighting for how much the controller should attempt to avoid obstacles (default 0.01)
+  meter_scoring: true #  whether or not assume that goal_distance and path_distance are expressed in meters (default: false)
+  
+  # Foward simulation parameters
+  # Parameters that determine how far in advance and with what granularity trajectories are simulated
+  sim_time: 4.0  # The amount of time (in sec) to forward-simulate trajectories, a higher value can result in slightly smoother trajectories (default: 0.025)
+  sim_granularity: 0.025 # The step size, in meters, to take between points on a given trajectory (default: 0.025) 
+  vx_samples: 3.0 # The number of samples to use when exploring the x velocity space (int, default: 3)
+  vtheta_samples: 20 # The number of samples to use when exploring the theta velocity space (int, default: 20)
+
+
+
+  # Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.05 # default is 0.05 rad (~3 degrees)
+  xy_goal_tolerance: 0.08 # in meters, (default: 0.1)
+  latch_xy_goal_tolerance: true # (default: false) if the goal position is reached it is considered permanently

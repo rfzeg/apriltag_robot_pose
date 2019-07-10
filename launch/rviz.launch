@@ -5,6 +5,8 @@
 
   <!-- Determine use of GUI -->
   <arg name="use_rviz" default="true" />
+  <arg name="rviz_config_file" default="robot_pose.rviz" />
+  <!-- <arg name="rviz_config_file" default="ar_tag_navigation.rviz" /> -->
 
   <!-- Publish joint_states to /tf tree, provides Rviz with transformation data -->
   <!-- This package reads the robot_description parameter, finds all of the non-fixed joints -->
@@ -23,6 +25,6 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" />
 
   <!-- Run Rviz   -->
-  <node if="$(arg use_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find apriltag_robot_pose)/config/robot_pose.rviz"/>
+  <node if="$(arg use_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find apriltag_robot_pose)/config/$(arg rviz_config_file)"/>
 
 </launch>

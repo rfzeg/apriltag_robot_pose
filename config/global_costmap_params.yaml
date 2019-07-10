@@ -1,0 +1,13 @@
+global_costmap:
+   global_frame: map
+   robot_base_frame: robot_footprint
+   update_frequency: 2.0 # the Hz at which the costmap will run its update loop
+   publish_frequency: 1.0 # the Hz at which the costmap will publish visualization information
+   width: 20.0
+   height: 20.0
+   resolution: 0.05
+   static_map: true
+   rolling_window: false
+   
+   inflation_radius: 0.8  # max. distance from an obstacle at which costs are incurred for planning paths
+   cost_scaling_factor:  0.8  # exponential rate at which the obstacle cost drops off 

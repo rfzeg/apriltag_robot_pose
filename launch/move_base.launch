@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- Starts move_base (nav stack) and loads the proper config files -->
+
+<launch>
+  <!-- Specify the name of the sensor data and command topics (can be overridden on the command line) -->
+  <!-- If no laser data is provided the local and global planer will be unable to perform dynamic obstacle avoidance -->
+  <arg name="scan_topic" default="/scan"/>
+  <arg name="cmd_vel_topic" default="/cmd_vel"/>
+  <arg name="odom_topic" default="/odom"/>
+ 
+  <arg name="base_global_planner" default="navfn/NavfnROS"/>
+  <!-- Alternative global planners, default is NavfnROS: -->
+  <!-- arg name="base_global_planner" default="carrot_planner/CarrotPlanner"/ -->
+  <!-- arg name="base_global_planner" default="global_planner/GlobalPlanner"/ -->
+  
+  <arg name="base_local_planner" default="base_local_planner/TrajectoryPlannerROS"/>
+  <!-- Alternative local planners, default is trajectory rollout: -->
+  <!-- arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/ -->
+ 
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find apriltag_robot_pose)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find apriltag_robot_pose)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find apriltag_robot_pose)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find apriltag_robot_pose)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find apriltag_robot_pose)/config/base_local_planner_params.yaml" command="load" />
+
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+    
+    <param name="base_global_planner" value="$(arg base_global_planner)"/>
+    <param name="base_local_planner" value="$(arg base_local_planner)"/>  
+
+    <param name="controller_frequency" type="double" value="3"/>
+    
+    <!-- Set the goal tolerance -->
+    <param name="move_base/TrajectoryPlannerROS/yaw_goal_tolerance" value="0.1"/>
+    <param name="move_base/TrajectoryPlannerROS/xy_goal_tolerance" value="0.2"/>
+  </node>
+</launch>

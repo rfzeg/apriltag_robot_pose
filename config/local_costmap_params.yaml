@@ -1,0 +1,15 @@
+local_costmap:
+   global_frame: odom
+   robot_base_frame: robot_footprint
+   update_frequency: 2.0 # the Hz at which the costmap will run its update loop
+   publish_frequency: 1.0 # the Hz at which the costmap will publish visualization information
+   width: 5.0 # Width of the local costmap in meters (default: 10)
+   height: 5.0 #  Height of the local costmap in meters (default: 10)
+   resolution: 0.05 # Resolution of the map in meters per cell
+   static_map: false
+   rolling_window: true # true means the costmap will remain centered around the robot
+   
+   inflation_radius: 0.4  # max. distance from an obstacle at which costs are incurred for planning paths
+   cost_scaling_factor:  0.4  # exponential rate at which the obstacle cost drops off 
+   
+   publish_cost_grid: true # to visualize the cost function produced by the local planner in rviz
