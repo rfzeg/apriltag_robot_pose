@@ -10,17 +10,35 @@ xterm -e "roslaunch plywood_mazes maze_3_6x6.launch" &
 sleep 6
 
 # Prompt for a key press to continue after Gazebo has loaded
-read -n 1 -r -s -p "Press any key to continue once Gazebo has loaded or Ctrl+C to abort..."
+#read -n 1 -r -s -p "Press any key to continue once Gazebo has loaded or Ctrl+C to abort..."
+#echo ""
+
+# Allow for noisy odometry choice
 echo ""
+read -p "After Gazebo has fully loaded, do you want to start a noisy odometry node? (y/n): " input_choice_1
 
-# Load robot description to parameter server and spawn a robot
-xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch odometryTopic:=odom_perfect" &
-#xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect" &
-sleep 4
+if [ "$input_choice_1" = "y" ]
+then
+  # Load robot description to parameter server and spawn a robot
+  xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch odometryTopic:=odom_perfect" &
+  #xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect" &
+  sleep 4
 
-# Start noisy odometry node
-xterm -e "roslaunch noisy_odometry noisy_odometry.launch" &
-sleep 4
+  # Start noisy odometry node
+  xterm -e "roslaunch noisy_odometry noisy_odometry.launch" &
+  sleep 4
+
+elif [ "$input_choice_1" = "n" ]
+then
+  # Load robot description to parameter server and spawn a robot
+  xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch" &
+  sleep 4
+  echo ""
+else
+  echo ""
+  echo "Warning: Not an acceptable option. Do you want to start a noisy odometry node? Choose (y/n)"
+  echo ""
+fi
 
 # Kick off static transform broadcaster node
 xterm -e "roslaunch apriltag_robot_pose static_transforms.launch" &
@@ -36,16 +54,17 @@ sleep 2
 
 # Allow for Rviz choice
 echo ""
-read -p "Do you want to start RVIZ with a preconfigured view (y/n): " input_choice
+read -p "Do you want to start RVIZ with a preconfigured view (y/n): " input_choice_2
 
-if [ "$input_choice" = "y" ]
+if [ "$input_choice_2" = "y" ]
 then
   # Start RVIZ
   xterm -e "roslaunch apriltag_robot_pose rviz.launch" &
   sleep 4
   # Load pre-made map using map server
-  xterm -e "roslaunch plywood_mazes map_server_maze_3.launch"
-elif [ "$input_choice" = "n" ]
+  xterm -e "roslaunch plywood_mazes map_server_maze_3.launch" &
+  echo ""
+elif [ "$input_choice_2" = "n" ]
 then
   echo ""
   echo "Rviz *NOT* started!"
