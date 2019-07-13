@@ -6,9 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /TF1
-        - /Local Costmap1/Status1
-        - /Global Costmap1/Status1
+        - /TF1/Frames1
+        - /RobotModel1
       Splitter Ratio: 0.5
     Tree Height: 621
   - Class: rviz/Selection
@@ -57,37 +56,23 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
-        camera_depth_frame:
-          Value: true
-        camera_depth_optical_frame:
-          Value: true
-        camera_mesh_link:
-          Value: true
-        camera_rgb_optical_frame:
-          Value: true
-        camera_rgbd_frame:
-          Value: true
+        All Enabled: false
+        camera:
+          Value: false
+        camera_tf_frame:
+          Value: false
         chassis:
-          Value: true
-        dump_box:
-          Value: true
+          Value: false
         hokuyo:
-          Value: true
-        kinect_baselink:
-          Value: true
-        kinect_pole:
-          Value: true
-        laser_pole:
-          Value: true
+          Value: false
         left_wheel:
-          Value: true
+          Value: false
         map:
           Value: true
         odom:
           Value: true
         right_wheel:
-          Value: true
+          Value: false
         robot_footprint:
           Value: true
         tag_0:
@@ -244,25 +229,16 @@ Visualization Manager:
           odom:
             robot_footprint:
               chassis:
-                dump_box:
+                camera:
                   {}
-                kinect_pole:
-                  kinect_baselink:
-                    camera_rgbd_frame:
-                      camera_depth_frame:
-                        camera_depth_optical_frame:
-                          {}
-                      camera_mesh_link:
-                        {}
-                      camera_rgb_optical_frame:
-                        {}
-                laser_pole:
-                  hokuyo:
-                    {}
-              left_wheel:
-                {}
-              right_wheel:
-                {}
+                camera_tf_frame:
+                  {}
+                hokuyo:
+                  {}
+                left_wheel:
+                  {}
+                right_wheel:
+                  {}
           tag_0:
             {}
           tag_1:
@@ -409,7 +385,7 @@ Visualization Manager:
             {}
       Update Interval: 0
       Value: true
-    - Alpha: 1
+    - Alpha: 0.300000012
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -419,24 +395,12 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        camera_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_mesh_link:
+        camera:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        camera_rgb_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_rgbd_frame:
+        camera_tf_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -445,26 +409,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        dump_box:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         hokuyo:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        kinect_baselink:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        kinect_pole:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        laser_pole:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -526,12 +471,22 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
-      Enabled: false
+      Enabled: true
+      Name: Global Costmap
+      Topic: /move_base/global_costmap/costmap
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Alpha: 0.699999988
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
       Name: Local Costmap
       Topic: /move_base/local_costmap/costmap
       Unreliable: false
       Use Timestamp: false
-      Value: false
+      Value: true
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -578,16 +533,6 @@ Visualization Manager:
       Topic: /move_base/TrajectoryPlannerROS/local_plan
       Unreliable: false
       Value: true
-    - Alpha: 0.699999988
-      Class: rviz/Map
-      Color Scheme: map
-      Draw Behind: false
-      Enabled: true
-      Name: Global Costmap
-      Topic: /move_base/global_costmap/costmap
-      Unreliable: false
-      Use Timestamp: false
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -613,7 +558,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 7.22764111
+      Distance: 5.05669641
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
