@@ -32,7 +32,7 @@ elif [ "$input_choice_1" = "n" ]
 then
   # Load robot description to parameter server and spawn a robot
   #xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch" &
-  xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch" &
+  xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch add_laser_sensor:=false" &
   sleep 4
   echo ""
 else
