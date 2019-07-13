@@ -15,7 +15,7 @@ sleep 6
 
 # Allow for noisy odometry choice
 echo ""
-read -p "After Gazebo has fully loaded, do you want to start a noisy odometry node? (y/n): " input_choice_1
+read -p "After Gazebo has loaded, do you want to start a noisy odometry node? (y/n): " input_choice_1
 
 if [ "$input_choice_1" = "y" ]
 then
@@ -74,3 +74,7 @@ else
   echo "Warning: Not an acceptable option. Choose (y/n)"
   echo ""
 fi
+# Prompt for a key press to continue..
+echo "Press any key to return to the shell prompt or"
+read -n 1 -r -s -p "Ctrl+C to close all X-Term processes..."
+echo ""
