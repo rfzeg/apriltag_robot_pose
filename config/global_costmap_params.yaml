@@ -1,13 +1,24 @@
+# Independent settings for the global planner's costmap
 global_costmap:
-   global_frame: map
+   global_frame: map # sets what coordinate frame the costmap should run in
    robot_base_frame: robot_footprint
    update_frequency: 2.0 # the Hz at which the costmap will run its update loop
    publish_frequency: 1.0 # the Hz at which the costmap will publish visualization information
    width: 20.0
    height: 20.0
    resolution: 0.05
-   static_map: true
+   static_map: true # determines whether or not to load an existent map provided by the map_server
    rolling_window: false
    
-   inflation_radius: 0.8  # max. distance from an obstacle at which costs are incurred for planning paths
-   cost_scaling_factor:  0.8  # exponential rate at which the obstacle cost drops off 
+   inflation_radius: 0.4  # max. distance from an obstacle at which costs are incurred for planning paths
+   cost_scaling_factor:  4.0  # exponential rate at which the obstacle cost drops off, setting it higher will make the decay curve more steep
+
+   # define the coordinates of the robot outline
+   footprint: [[0.25,0.16],[0.25,-0.16],[-0.25,-0.16],[-0.25,0.16]]
+   #robot_radius: 0.4
+   footprint_padding: 0.1
+
+   # If no plugins parameters are provided the initialization code will assume that the configuration is pre-Hydro and will load a default set of plugins with default namespaces
+   plugins:
+    - {name: static_layer, type: "costmap_2d::StaticLayer"}
+    - {name: inflation_layer,     type: "costmap_2d::InflationLayer"}
