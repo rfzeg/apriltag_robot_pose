@@ -20,8 +20,8 @@ read -p "After Gazebo has loaded, do you want to start a noisy odometry node? (y
 if [ "$input_choice_1" = "y" ]
 then
   # Load robot description to parameter server and spawn a robot
-  xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch odometryTopic:=odom_perfect" &
-  #xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect" &
+  #xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch odometryTopic:=odom_perfect" &
+  xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect" &
   sleep 4
 
   # Start noisy odometry node
@@ -31,7 +31,8 @@ then
 elif [ "$input_choice_1" = "n" ]
 then
   # Load robot description to parameter server and spawn a robot
-  xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch" &
+  #xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch" &
+  xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch" &
   sleep 4
   echo ""
 else
@@ -45,11 +46,13 @@ xterm -e "roslaunch apriltag_robot_pose static_transforms.launch" &
 sleep 2
 
 # Launch AprilTag detector node to detect AR markers in space
-xterm -e "roslaunch apriltag_robot_pose apriltag_detector.launch image_topic:=/camera/rgb/image_raw info_topic:=/camera/rgb/camera_info" &
+#xterm -e "roslaunch apriltag_robot_pose apriltag_detector.launch image_topic:=/camera/rgb/image_raw info_topic:=/camera/rgb/camera_info" &
+xterm -e "roslaunch apriltag_robot_pose apriltag_detector.launch image_topic:=/udacity_bot/camera1/image_raw info_topic:=/udacity_bot/camera1/image_raw" &
 sleep 4
 
 # Execute the robot pose estimator node.
-xterm -hold -e "roslaunch apriltag_robot_pose robot_pose.launch camera_frame:=/camera_rgbd_frame" &
+#xterm -hold -e "roslaunch apriltag_robot_pose robot_pose.launch camera_frame:=/camera_rgbd_frame" &
+xterm -hold -e "roslaunch apriltag_robot_pose robot_pose.launch camera_frame:=/camera_tf_frame" &
 sleep 2
 
 # Run move_base (nav_stack)
