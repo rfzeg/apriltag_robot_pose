@@ -195,7 +195,7 @@ def base_wrt_map_pose(pose=[0,0,0,0,0,0,1], child_frame_id='obj', parent_frame_i
 
     robot_pose.pose.position.x = pose[0]
     robot_pose.pose.position.y = pose[1]
-    robot_pose.pose.position.z = pose[2]
+    robot_pose.pose.position.z = 0 # fixate the z value of the robot base to avoid that it jumps up and down, or use pose[2] for the detected value
     robot_pose.pose.orientation.x = pose[3]
     robot_pose.pose.orientation.y = pose[4]
     robot_pose.pose.orientation.z = pose[5]
