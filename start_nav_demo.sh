@@ -21,7 +21,7 @@ if [ "$input_choice_1" = "y" ]
 then
   # Load robot description to parameter server and spawn a robot
   #xterm -e "roslaunch rtab_dumpster spawn_rtab_dumpster.launch odometryTopic:=odom_perfect" &
-  xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect" &
+  xterm -e "roslaunch udacity_bot spawn_udacity_bot.launch odometryTopic:=odom_perfect add_laser_sensor:=false" &
   sleep 4
 
   # Start noisy odometry node
