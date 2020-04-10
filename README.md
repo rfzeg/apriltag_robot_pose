@@ -100,3 +100,4 @@ This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazeb
 ## Resources
 + http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20broadcaster%20%28Python%29
 + The general relationship between the map, odom and base\_link frames is already described in [Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html).
++ [Average of Quaternions](https://stackoverflow.com/questions/12374087/average-of-multiple-quaternions/)
