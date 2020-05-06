@@ -95,9 +95,10 @@ This package has only been tested on Ubuntu 16.04 LTS with ROS Kinetic and Gazeb
 
 ## Further Improvements
 + Averaging quaternions is not straightforward. At the moment the robot's estimated orientation, when several AR markers are detected, is the orientation of the first detected marker.
-  One could include a new function to average quaternions from all detected markers for a better robot's orientation estimation.
+  One could do a SLERP to average two quaternions from two (closest) detected markers for a better robot's orientation estimation. See: https://github.com/danielduberg/safe_flight/issues/1
 
 ## Resources
 + http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20broadcaster%20%28Python%29
 + The general relationship between the map, odom and base\_link frames is already described in [Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html).
 + [Average of Quaternions](https://stackoverflow.com/questions/12374087/average-of-multiple-quaternions/)
++ https://github.com/lucien386/DJISummerCamp2019/blob/master/ROS_Ws/src/sc_localization/odom_update_node.cpp
